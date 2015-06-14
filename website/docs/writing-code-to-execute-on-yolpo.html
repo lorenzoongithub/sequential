@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>docs - writing code to execute on yolpo</title>
+  <link rel="icon" href="../favicon.ico">
+  <link href="../x.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  
+<div id='divMenu'><a class='menuAnchor' href='../index.html'><img src='../yolpo.112x50.png' width=112 height=50 /></a><a 
+   class='selMenuAnchor' href='../docs.html'>Docs</a><a 
+   class='menuAnchor' href='../explore.html'>Explore</a></div>
+
+<div class='main-content'>
+
+   <h1>Writing code to execute on yolpo</h1>
+   
+   <h2>Style</h2>
+   Typical code which runs on yolpo look like this: 
+   
+<pre class='doc-code-excerpt'>
+
+load('lodash.js');
+
+a = _.map([1, 2, 3], function(n) { return n * 3; });
+
+if (a[0] != 3) throw ''
+if (a[1] != 6) throw ''
+if (a[2] != 6) throw ''
+   
+</pre>
+   
+This is 100% javascript, so there is nothing new to learn, but just a few things to point out.
+
+<ul>
+<li>Use the load function to load synchronously an external javascript resource</li>
+<li>Think sequentially and make each statement as simple as possible</li>
+<li>Throw an exception if an expectation is not met</li>
+</ul>   
+
+
+<h2>Global variables</h2>
+Code which runs on yolpo has access to two global variables: load and waitUntil. 
+
+<ul>
+<li>
+<b>function load(string url)</b> - Loads synchronously an external javascript resource.<br>
+                                   This function throws an exception (timeout) if the script is not loaded within 10 seconds.
+</li>
+<li>                                    
+<b>function waitUntil(boolean)</b> - Holds the Process Counter (PC) until the argument becomes true.<br>
+                                     Use this function to work on asynchronous API.  
+                                     
+</li>
+</ul>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50611702-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

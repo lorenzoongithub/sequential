@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+	<h2 id='h2Loading' style='font-family:sans-serif;position:fixed;top:28%;width:100%;text-align:center;'>Loading ...</h2>
+	<script src='3rd/esprima.js'></script>
+	<script src='function.loadGistGitHub.js'></script>
+	<script src='function.statementify.js'></script>
+	<script src='function.generateHTMLSnippet.js'></script>
+	<script>
+
+	(function (document, undefined) { // IIFE
+		
+		// Defines the callback function.
+		// {errorMessage: '...'}
+	    // 
+	    // { id : '1234' ,
+	    //	 content : '// code here'
+	    //   originator: "the gist's url"
+	    // }
+		function fcallback(oj) {
+			if (oj.errorMessage) {
+				document.getElementById('h2Loading').innerHTML = 'Error:'+oj.errorMessage;
+				sessionStorage.removeItem('code');
+				sessionStorage.removeItem('html');
+				return; 
+			}
+			var statements = statementify(oj.content); 
+			if (statements.e) {
+				// esprima error (parser)
+				document.getElementById('h2Loading').innerHTML = 'Source:'+oj.originator+'<br>Parser Error:'+statements.e;
+				sessionStorage.setItem('code', oj.content);
+				sessionStorage.removeItem('html');
+				parent.postMessage(oj.id,'*');
+				return;
+			}
+			var html = generateHTMLSnippet(statements);
+			sessionStorage.setItem('code',    oj.content);
+			sessionStorage.setItem('codeBKP', oj.content);
+			sessionStorage.setItem('html', html);
+			parent.postMessage(oj.id,'*'); // sends a message to v.html to display the title.
+			location.href = 'proxy.html'+location.search;
+		}
+	
+		// assumes a url like this: [...]?123456789[&other optional options]
+		var id = location.search.substring(1);
+		if (id.indexOf('&')!==-1) id = id.substring(0,id.indexOf('&'));
+		if (id.indexOf('gist=')==0) {
+			loadGistGitHub(id.substring(5), fcallback);
+		} else {
+			fcallback({errorMessage:'invalid URL - '+id })
+		}
+	})(document); // END OF IIFE
+</script>

@@ -1,0 +1,45 @@
+<!docType HTML>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="yolpo.css">
+<link rel="stylesheet" href="codemirror.5.3.0/codemirror.css" />
+<script src='codemirror.5.3.0/codemirror-compressed.js' ></script>
+<style> .CodeMirror { height:100%; } </style>
+</head>
+<body>
+<div id='editor' style='position:absolute;top:0;bottom:0;left:0;right:0'></div>
+<script>
+
+var oldValue = sessionStorage.getItem('code');
+
+var cm = CodeMirror(document.getElementById('editor'), {
+	value: oldValue,
+	lineNumbers: true,
+	mode:  "javascript"
+});
+
+window.onunload = function() {
+	sessionStorage.setItem('code', cm.getValue()); 
+}
+
+//
+//Queuing the updates until the editing settles. 
+//
+var timeOnLastChange = 0; 
+	
+function monitor() {
+	var value = cm.getValue();
+	
+	if (value != oldValue) {
+	    timeOnLastChange = +new Date();
+        oldValue = value;
+	} else if (value == oldValue && timeOnLastChange != 0 && (+new Date() - timeOnLastChange > 400)) {
+		timeOnLastChange = 0;                                   
+	    window.parent.right.postMessage(value,'*');  
+	}
+	setTimeout(monitor,150); 
+}
+monitor();
+</script>
+</body>
+</html>
