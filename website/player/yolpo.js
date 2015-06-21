@@ -175,8 +175,7 @@
 			
 			if (playMode == 2) { // SLOW MOTION
 				if (oj !== undefined) {
-					// TO-DO MOVE THE STYLE !!! LP
-					elem.nextSibling.innerHTML += '<span style="padding:1px 2px;font-style:italic;font-size:10px;font-weight:bold; color:orange;background-color:#f2f2f2;border:1px solid #ddd">'+oj+'</span>'
+					elem.nextSibling.innerHTML += '<span class="spanInterimResult">'+oj+'</span>'
 				}
 				if (i-1>0)          trs[i-2].style.backgroundColor = 'white'; // COMMENT OUT FOR HAVING A MOVING-LINE VS CURTAIN EFFECT 
 				if (i-1<totalCount) trs[i-1].style.backgroundColor = 'orange';

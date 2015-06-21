@@ -76,6 +76,16 @@ td {
 	padding: 2px;
 }
 
+/** span added to the instruction to display the interim result of an operation **/
+.spanInterimResult {
+	padding:1px 2px;
+	font-style:italic;
+	font-size:10px;
+	font-weight:bold;
+	color:orange;
+	background-color:#f2f2f2;
+	border:1px solid #ddd
+}
 
 /* 
 LN: Line Number
