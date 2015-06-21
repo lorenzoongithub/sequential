@@ -78,7 +78,7 @@ body {
     background-position: 0 0;
 }
 
-#lnkStop { 
+#lnkSlow { 
 	cursor:pointer;
 	position:absolute;
     left: 40px;
@@ -87,9 +87,20 @@ body {
     height:40px; 
     background-image: url('v.icons.png');
     background-repeat: no-repeat;
-    background-position: -40px 0;
+    background-position: -160px 0;
 }
 
+#lnkStop { 
+	cursor:pointer;
+	position:absolute;
+    left: 80px;
+    width:40px; 
+    bottom:0; 
+    height:40px; 
+    background-image: url('v.icons.png');
+    background-repeat: no-repeat;
+    background-position: -40px 0;
+}
 
 #lnkExpand {
 	cursor:pointer;

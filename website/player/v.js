@@ -83,16 +83,14 @@ function getParam(key) {
 
 
 
+var playMode = getParam('&autoplay=') || 1; // 0:off 1:on 2:slow
+var editMode = getParam('&edit=');  //0:basic editor,1:rich editor,undefined:no editing.
 
 
-
-var isPlaying = getParam('&autoplay=') !== '0';
-var editMode =  getParam('&edit=');  //0:basic editor,1:rich editor,undefined:no editing.
-
-
-
-if (isPlaying) {
+if (playMode == 1) {
 	document.getElementById('lnkPlay').style.backgroundPosition='0 -40px';
+} else if (playMode == 2) {
+	document.getElementById('lnkSlow').style.backgroundPosition='-160px -40px';
 } else {
 	document.getElementById('lnkStop').style.backgroundPosition='-40px -40px'; 
 }
@@ -110,6 +108,7 @@ lnkYolpo.onclick = function() {
 lnkPlay.onclick = function() {
 	lnkStop.style.backgroundPosition='-40px 0';
 	lnkPlay.style.backgroundPosition='0 -40px';
+	lnkSlow.style.backgroundPosition='-160px 0';
 	if (document.title == 'yolpo') return;
 	
 	if (editMode==1) {
@@ -119,13 +118,31 @@ lnkPlay.onclick = function() {
 	} else {
 		ifmScreen.location.replace('proxy.html'+replaceParamValue('&autoplay=',1));
 	}
-	isPlaying = true; 
+	playMode = 1; 
+};
+
+lnkSlow.onclick = function() {
+	lnkStop.style.backgroundPosition='-40px 0';
+	lnkPlay.style.backgroundPosition='0 0';
+	lnkSlow.style.backgroundPosition='-160px -40px';
+	if (document.title == 'yolpo') return;
+	
+	if (editMode==1) {
+		ifmScreen.location.replace('edit.wrap.basic.html'+replaceParamValue('&autoplay=',2));
+	} else if (editMode==2) {
+		ifmScreen.location.replace('edit.wrap.rich.html'+replaceParamValue('&autoplay=',2));
+	} else {
+		ifmScreen.location.replace('proxy.html'+replaceParamValue('&autoplay=',2));
+	}
+	playMode = 2;
 };
 
 lnkStop.onclick = function() {
-	if (isPlaying == false) return; 
+	if (playMode==0) return; 
 	lnkStop.style.backgroundPosition='-40px -40px';
 	lnkPlay.style.backgroundPosition='0 0';
+	lnkSlow.style.backgroundPosition='-160px 0';
+	
 	if (document.title == 'yolpo') return;
 	if (editMode==1) {
 		ifmScreen.location.replace('edit.wrap.basic.html'+replaceParamValue('&autoplay=',0));
@@ -134,7 +151,7 @@ lnkStop.onclick = function() {
 	} else {
 		ifmScreen.location.replace('proxy.html'+replaceParamValue('&autoplay=',0));
 	}
-	isPlaying = false;
+	playMode = 0;
 };
 
 lnkEdit.onclick = function() {
@@ -153,19 +170,19 @@ function changeEditMode(value) {
 		lnkBasicEditor.style.color = '#ccc';
 		lnkRichEditor.style.color =  '#000';
 		lnkNoEditor.style.color =    '#000'
-		ifmScreen.location.replace('edit.wrap.basic.html'+replaceParamValue('&autoplay=',(isPlaying ? '1' :'0')));
+		ifmScreen.location.replace('edit.wrap.basic.html'+replaceParamValue('&autoplay=',playMode));
 	} else if (editMode == 2) {
 		lnkEdit.style.backgroundPosition='-120px -40px';
 		lnkBasicEditor.style.color = '#000';
 		lnkRichEditor.style.color =  '#ccc';
 		lnkNoEditor.style.color =    '#000'
-		ifmScreen.location.replace('edit.wrap.rich.html'+replaceParamValue('&autoplay=',(isPlaying ? '1' :'0')));
+		ifmScreen.location.replace('edit.wrap.rich.html'+replaceParamValue('&autoplay=',playMode));
 	} else {
 		lnkEdit.style.backgroundPosition='-120px 0';
 		lnkBasicEditor.style.color = '#000';
 		lnkRichEditor.style.color =  '#000';
 		lnkNoEditor.style.color =    '#ccc';
-		ifmScreen.location.replace('proxy.html'+replaceParamValue('&autoplay=',(isPlaying ? '1' :'0')));
+		ifmScreen.location.replace('proxy.html'+replaceParamValue('&autoplay=',playMode));
 	}
 	
 	// no popup

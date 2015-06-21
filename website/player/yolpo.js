@@ -19,10 +19,10 @@
 	}
 	
 	
-	var p_autoplay =        getParam('&autoplay=') || '1';
-	var p_failfast =        getParam('&failfast=');
+	var playMode =        getParam('&autoplay=') || 1;
+	var failfast =        getParam('&failfast=');
 	
-	var totalLines = 0; 
+	var totalLines = 1; 
 	var tempCode = sessionStorage.code; // ??? Accessing the session.
 	for (var i=0;i<tempCode.length;i++) {
 		if (tempCode.charAt(i)==='\n') totalLines++; 
@@ -34,11 +34,11 @@
 	for (i=0;i<totalCount;i++) {
 		if (trs[i].childNodes[0].className==='LN') { statementCount++; }
 	}
-	var errorCount = [];       // used only if p_failfast is 0-disabled. 
+	var errorCount = [];       // used only if failfast is 0-disabled. 
 	var divResult = document.getElementById('divResult');
 	var divProgressBarTongueStyle = document.getElementById('divProgressBarTongue').style;
 	
-	if (p_autoplay == '' || p_autoplay == 0) {
+	if (playMode == 0) {
 		divResult.innerHTML = statementCount+' statements, '+totalLines+' lines.'	
 		return; // EXIT IMMEDIATELY NOTHING TO RUN.
 	} 
@@ -61,7 +61,7 @@
 
 
 	// global definition for load.
-	//https://github.com/thirdpartyjs/thirdpartyjs-code/blob/master/examples/templates/02/loading-files/index.html
+	// https://github.com/thirdpartyjs/thirdpartyjs-code/blob/master/examples/templates/02/loading-files/index.html
 	load = function(url) {
 		if (CDR._loadedURLs[url]) {
 			CDR._hasToWait = false; 
@@ -106,7 +106,11 @@
 				return;
 			}
 			
-			divResult.innerHTML = 'Running '+(1+i);
+
+			var elem =   document.getElementById('L'+(i+1));
+			var dataLN = elem.getAttribute('data-ln');
+			
+			divResult.innerHTML = (dataLN == null) ? 'Running ...' : 'Running '+dataLN;
 			divProgressBarTongueStyle.width = (100*((1+i)/totalCount))+'%';  
 		
 		    
@@ -114,21 +118,30 @@
 				if (i<totalCount && trs[i].style.backgroundColor != 'orange') {
 					if (i>0)          trs[i-1].style.backgroundColor = 'white'; // COMMENT OUT FOR HAVING A MOVING-LINE VS CURTAIN EFFECT 
 					if (i<totalCount) trs[i].style.backgroundColor = 'orange';
-					divResult.innerHTML = 'Running '+(1+i);
-					divProgressBarTongueStyle.width = (100*((1+i)/totalCount))+'%';  
 					setTimeout(loopy,20); // allows enough time to force a repaint !!!  <-- think logic to enable disable this 
 					return;                                                           //  <-- to speed it up
 				}
 			}
-			
-			// moves the screen 
-			divMain.scrollTop  = trs[i].offsetTop;
+			 
+			if (playMode == 2) {
+				// in slow motion: don't move the viewport unless the line is not in it.
+				function isElementInViewport (el) {
+				    var rect = el.getBoundingClientRect();
+				    return (
+				        rect.top >= 0 &&
+				        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+				    );
+				}
+				if (isElementInViewport(trs[i])==false) {
+					divMain.scrollTop  = trs[i].offsetTop;	
+				}
+			} else {
+				// move the viewport
+				divMain.scrollTop  = trs[i].offsetTop;	
+			}
 			
 			var node = trs[i].childNodes[1];
-			var code = node.textContent || node.innerText; // equivalent to htmlDecode (to do: investigate this solution is fit - see underscore for a better alternative)
-			
-			var elem = document.getElementById('L'+(i+1));
-			
+			var code = node.textContent || node.innerText; // equivalent to htmlDecode (to do: investigate this solution is fit - see lodash/underscore for a better alternative)
 			
 			var oj; 
 			try {
@@ -136,12 +149,12 @@
 			} catch (ex) {
 				elem.style.backgroundColor = '#d9534f'; 
 				elem.nextSibling.style.backgroundColor = '#d9534f';
-				if (p_failfast==1) {
+				if (failfast==1) {
 					divResult.style.backgroundColor = '#d9534f';
-					divResult.innerHTML = 'Failure at <a href="#L'+(i+1)+ '">'+elem.getAttribute('data-ln')+'</a> '; 
+					divResult.innerHTML = 'Failure at <a href="#L'+(i+1)+ '">'+dataLN+'</a> '; 
 					return;
 				}
-				errorCount.push('<a href="#L'+(i+1)+ '">'+elem.getAttribute('data-ln')+'</a>');
+				errorCount.push('<a href="#L'+(i+1)+ '">'+dataLN+'</a>');
 			}
 			
 			if (CDR._hasToWait) {
@@ -160,15 +173,23 @@
 			
 			i++;
 			
+			if (playMode == 2) { // SLOW MOTION
+				if (oj !== undefined) {
+					// TO-DO MOVE THE STYLE !!! LP
+					elem.nextSibling.innerHTML += '<span style="padding:1px 2px;font-style:italic;font-size:10px;font-weight:bold; color:orange;background-color:#f2f2f2;border:1px solid #ddd">'+oj+'</span>'
+				}
+				if (i-1>0)          trs[i-2].style.backgroundColor = 'white'; // COMMENT OUT FOR HAVING A MOVING-LINE VS CURTAIN EFFECT 
+				if (i-1<totalCount) trs[i-1].style.backgroundColor = 'orange';
+				setTimeout(loopy,1000); 
+				return;
+			}
+			
 			var now = +new Date();
 			if (now - start > 100) {
 				break;
 			} 
 		}
-		
 		setTimeout(loopy,20);
-		
 	};
     loopy();
-
 })();
