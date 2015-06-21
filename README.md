@@ -26,8 +26,9 @@ A few examples of popular libraries running on yolpo:
 
 There are many things I would like to add in yolpo. Here are a few: 
 
-* concept of playlist - similar concept of a playlist for a video player
-* slow motion button - a button to execute the javascript in slow motion displaying interim results on the way   
+* slow motion button - a button to execute the javascript in slow motion _almost done_
+* option to display interim results
+* concept of playlist - similar concept of a playlist for a video player 
 * much better UI and UX - the UI and UX need to significantly improve. Currently editing is particularly unintuitive. 
 * isomorphic API - currently yolpo's code is heavily dependent on some key dom components (e.g. IFrame for sandboxing the execution)
 * github sign in integration
