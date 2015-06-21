@@ -28,10 +28,11 @@ There are many things I would like to add in yolpo. Here are a few:
 
 * slow motion button - a button to execute the javascript in slow motion _almost done_
 * option to display interim results
+* option to get underlying gist from GitHub. 
 * concept of playlist - similar concept of a playlist for a video player 
 * much better UI and UX - the UI and UX need to significantly improve. Currently editing is particularly unintuitive. 
 * isomorphic API - currently yolpo's code is heavily dependent on some key dom components (e.g. IFrame for sandboxing the execution)
-* github sign in integration
+* GitHub sign in integration
 
 # collaboration 
 
