@@ -1,0 +1,29 @@
+<!docType HTML>
+<html>
+<body>
+<div id='right' ></div>
+<script>
+document.getElementById('right').innerHTML =location.href;
+
+var timeout = +location.search.substring(1);
+
+if (timeout > 0) {
+	setTimeout(function() {
+		x = location.href;
+		x = x.substring(1+x.lastIndexOf('/')); // hack: because the URL is expressed relatively.
+
+		
+		if (timeout%21 == 0) {
+			sessionStorage.setItem(x, 'bad' ); 
+		} else {
+			sessionStorage.setItem(x, 'ok' );   
+		}
+
+	},timeout);
+}
+
+
+
+</script>
+</body>
+</html>
