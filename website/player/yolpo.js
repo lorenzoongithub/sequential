@@ -99,9 +99,11 @@
 				divProgressBarTongueStyle.backgroundColor = 'green';
 				if (errorCount.length == 0) {
 					divResult.innerHTML = exit+'All Done - '+statementCount+' statements, '+totalLines+' lines, 0 errors.';
+					sessionStorage.setItem(location.search, 'All Done - '+statementCount+' statements, '+totalLines+' lines, 0 errors.');
 				} else {
 					divResult.style.backgroundColor = '#d9534f';
 					divResult.innerHTML = exit+'Done with Errors - '+statementCount+' statements, '+errorCount.length+' errors.<div>'+errorCount.join(' ')+'</div>';
+					sessionStorage.setItem(location.search, 'Done with Errors - '+statementCount+' statements, '+errorCount.length+' errors.');
 				}
 				return;
 			}
@@ -152,6 +154,7 @@
 				if (failfast==1) {
 					divResult.style.backgroundColor = '#d9534f';
 					divResult.innerHTML = 'Failure at <a href="#L'+(i+1)+ '">'+dataLN+'</a> '; 
+					sessionStorage.setItem(location.search, 'Failure at '+dataLN);
 					return;
 				}
 				errorCount.push('<a href="#L'+(i+1)+ '">'+dataLN+'</a>');
@@ -164,7 +167,8 @@
 					var elem = document.getElementById('L'+(i+1));
 					elem.style.backgroundColor = '#f0ad4e'; 
 					elem.nextSibling.style.backgroundColor = '#f0ad4e';
-					divResult.innerHTML = 'Timeout on line <a href="#L'+(i+1)+ '">'+(i+1)+'</a>';
+					divResult.innerHTML = 'Timeout on line <a href="#L'+(i+1)+ '">'+dataLN+'</a>';
+					sessionStorage.setItem(location.search,'Timeout on line '+dataLN); 
 					return; 
 				}
 				setTimeout(loopy,50); // replay the line in a bit. 
