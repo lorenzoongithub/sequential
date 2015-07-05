@@ -10,10 +10,11 @@
 //
 
 var search = location.search;
-var divTitle = document.getElementById('divTitle');
+var divTitle =       document.getElementById('divTitle');
 var lnkYolpo =       document.getElementById('lnkYolpo');
 var lnkStop =        document.getElementById('lnkStop');
 var lnkPlay =        document.getElementById('lnkPlay');
+var lnkExpand =      document.getElementById('lnkExpand');
 var lnkBasicEditor = document.getElementById('lnkBasicEditor');
 var lnkRichEditor =  document.getElementById('lnkRichEditor');
 var lnkNoEditor =    document.getElementById('lnkNoEditor');
@@ -48,7 +49,7 @@ if (top == self) {
 	lnkYolpo.style.display = 'none';
 	divTitle.style.paddingLeft = '4px'; // cheating. (manually aligns the padding because we removed the icon on its left)
 	lnkEdit.style.display = 'none'; 
-	lnkExpand.href='v.html'+search;
+	lnkExpand.href='http://www.yolpo.com/player/v.html'+search;
 }
 
 
