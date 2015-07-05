@@ -5,14 +5,83 @@
   <title>yolpo - explore</title>
   <link rel="icon" href="favicon.ico">
   <link href="x.css" rel="stylesheet" type="text/css">
+  <style>
+  #divLinkList a { display: block; cursor:pointer; width:128px;  height:128px; background-image: url('explore.icons.jpg'); background-repeat: no-repeat; border:1px solid black;margin:0 0 10px 0;}
+  </style>
 </head>
 <body>
 <div id='divMenu'><a class='menuAnchor' href='index.html'><img src='yolpo.112x50.png' width=112 height=50 /></a><a 
    class='menuAnchor' href='docs.html'>Docs</a><a 
    class='selMenuAnchor' href='explore.html'>Explore</a></div>
-<div class='main-content'>
-   <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/yolpogists" data-widget-id="589381971245150208">Tweets by @yolpogists</a>
-   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<div style='position:absolute;top:90px;height:400px;left:20px;right:168px;xborder:1px solid #333;background-color:#000;'>
+<iframe name='ifm' style='position:absolute;margin:0;width:100%;height:100%;border:0;overflow-y:hidden;background-color:#000;' scrolling='no'></iframe>
 </div>
+<div id='divLinkList' style='position:absolute;top:90px;bottom:0;right:20px;width:128px;'></div>
+<div style='position:absolute;top:500px;left:20px;right:168px;'>
+<div id="disqus_thread" ></div>
+</div>
+
+<script>
+(function() {         
+	var array = [
+		'<a style="background-position: 0 0;"      title="doT.js"       href="http://www.yolpo.com/explore.html?gist=5e0e99c2eac61d4c1ebb"></a>',
+		'<a style="background-position: -128px  0" title="esprima"      href="http://www.yolpo.com/explore.html?gist=437dca48f4d83155c9da"></a>',
+		'<a style="background-position: -256px  0" title="handlebars"   href="http://www.yolpo.com/explore.html?gist=b2243eb4c522d51c9a0b"></a>',
+		'<a style="background-position: -384px 0;" title="immutable.js" href="http://www.yolpo.com/explore.html?gist=9c4f4db5b0987ff4d0e4"></a>',
+		'<a style="background-position: -512px 0;" title="is.js"        href="http://www.yolpo.com/explore.html?gist=8921e746065297ae5dbe"></a>',
+		'<a style="background-position: -640px 0;" title="JS Hint"      href="http://www.yolpo.com/explore.html?gist=ab80cb31fd77ba277d48"></a>',
+		'<a style="background-position: -768px 0;" title="structured.js from Khan Accademy" href="http://www.yolpo.com/explore.html?gist=25aed56399b4952547be"></a>',
+		'<a style="background-position: -896px 0;" title="lodash"       href="http://www.yolpo.com/explore.html?gist=5b6014f6d1976805c41e"></a>',
+		'<a style="background-position:-1024px 0;" title="math.js"      href="http://www.yolpo.com/explore.html?gist=94b7ac036959a09c79f0"></a>',
+		'<a style="background-position:-1152px 0;" title="moment.js"    href="http://www.yolpo.com/explore.html?gist=f902b1dcbe298738356b"></a>',
+		'<a style="background-position:-1280px 0;" title="mori.js"      href="http://www.yolpo.com/explore.html?gist=ab6d188f80ec6591c926"></a>',
+		'<a style="background-position:-1408px 0;" title="mustache.js"  href="http://www.yolpo.com/explore.html?gist=497248560b85a178d0f0"></a>',
+		'<a style="background-position: -128px  -128px" title="underscore.js" href="http://www.yolpo.com/explore.html?gist=72e1c39019c5b9231fab"></a>',
+		'<a style="background-position: -256px  -128px" title="URI.js"      href="http://www.yolpo.com/explore.html?gist=6f6066cf3a5a87f21275"></a>',
+		'<a style="background-position: -512px  -128px" title="XRegExp"     href="http://www.yolpo.com/explore.html?gist=9b57d1e9a5a249392b77"></a>',
+		'<a style="background-position: -640px  -128px" title="numeral.js"  href="http://www.yolpo.com/explore.html?gist=ff5460d740379d027c7c"></a>',
+		'<a style="background-position: -768px  -128px" title="papa parse"  href="http://www.yolpo.com/explore.html?gist=1dbd4556e748bdb830b3"></a>',
+		'<a style="background-position: -896px  -128px" title="hogan.js"    href="http://www.yolpo.com/explore.html?gist=5c93f5e6766f700da4a8"></a>',
+		'<a style="background-position:-1024px  -128px" title="faker.js"    href="http://www.yolpo.com/explore.html?gist=3bfaae2ba8d6211cdcf1"></a>',
+		'<a style="background-position:-1152px  -128px" title="jade lang"   href="http://www.yolpo.com/explore.html?gist=83b6e77ae8b83077e1aa"></a>',
+		'<a style="background-position:-1280px  -128px" title="brain.js"    href="http://www.yolpo.com/explore.html?gist=bea1b5fc387c40fbeedd"></a>',
+		'<a style="background-position:-1408px  -128px" title="ramda.js"    href="http://www.yolpo.com/explore.html?gist=6fa48aa169c18ed9488f"></a>' ];               
+	
+	
+	if (location.search == '') {
+		var s = array[Math.floor(Math.random() * array.length)]; // if no search pick a random one. 
+		s = s.substring(s.indexOf('href=')+6,s.length-6);
+		location.replace(s); 
+		return; 
+	}
+	
+	
+    var len = array.length;
+	var arrayOf5 = [];
+	while (true) {
+		var ix = Math.floor(Math.random()*len)
+		if (array[ix] == null) continue; 
+	    arrayOf5.push(array[ix]);
+	    if (arrayOf5.length ==5) break;
+	    array[ix] = null;
+	} 
+	document.getElementById('divLinkList').innerHTML = arrayOf5.join('');
+	
+    ifm.location.href='http://www.yolpo.com/player/v.html'+location.search; 
+    
+    var disqus_shortname = 'yolpo';
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-50611702-1', 'auto');
+    ga('send', 'pageview');
+})(); 
+</script>
 </body>
 </html>
