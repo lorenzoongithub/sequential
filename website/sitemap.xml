@@ -1,0 +1,15 @@
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
+<url><loc>http://www.yolpo.com</loc><priority>1</priority></url>
+<url><loc>http://www.yolpo.com/explore.html</loc><priority>0.9</priority></url>
+<url><loc>http://www.yolpo.com/docs.html</loc><priority>0.8</priority></url>
+<url><loc>http://www.yolpo.com/docs/basic-concepts.html</loc><priority>0.8</priority></url>
+<url><loc>http://www.yolpo.com/docs/how-to-integrate-gists-from-github.html</loc><priority>0.8</priority></url>
+<url><loc>http://www.yolpo.com/docs/integration-playground.html</loc><priority>0.8</priority></url>
+<url><loc>http://www.yolpo.com/docs/not-another-code-playground.html</loc><priority>0.8</priority></url>
+<url><loc>http://www.yolpo.com/docs/put-yolpo-in-an-iframe.html</loc><priority>0.8</priority></url>
+<url><loc>http://www.yolpo.com/docs/writing-code-to-execute-on-yolpo.html</loc><priority>0.8</priority></url>
+<url><loc>http://www.yolpo.com/docs/yolpo-jasmine-mocha-and-the-others.html</loc><priority>0.8</priority></url>
+<url><loc>http://www.yolpo.com/docs/about.html</loc><priority>0.4</priority></url>
+<url><loc>http://www.yolpo.com/docs/terms.html</loc><priority>0.01</priority></url>
+<url><loc>http://www.yolpo.com/docs/privacy.html</loc><priority>0.01</priority></url>
+</urlset>
