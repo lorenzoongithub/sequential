@@ -5,6 +5,8 @@
   <title>yolpo</title>
   <link rel="icon" href="favicon.ico">
   <link href="x.css" rel="stylesheet" type="text/css">
+  <style>.separator {height:180px;} </style>
+  
 </head>
 <body>
 
@@ -12,15 +14,24 @@
    class='menuAnchor' href='docs.html'>Docs</a><a
    class='menuAnchor' href='explore.html'>Explore</a></div>
 
-<div style='padding:60px 0;background-color:#aaa;'>
-<iframe style='margin:0 10%;width:80%;height:356px;border:0;background-color:white;overflow-y: hidden;' scrolling='no' src='player/v.html?gist=69a334c066d3157e775f' ></iframe>
+<div class='main-content'>
+<div style='text-align:center;font-weight:bold'>
+	<div style='font-size:60px;'>hackable javascript testing</div>
+	<div style='font-size:24px;'>for the 21st century</div>
 </div>
 
-<div class='main-content'>
+<div class='separator' ></div>
+<h2>What</h2>
+A tool to see the execution of plain and simple javascript code
+<h2>Why</h2>
+To put test code on the foreground
+<h2>How</h2>
+Using modern browsers' immense capabilities:
+iframes for sandboxing,
+javascript parsers in javascript,
+not-so-evil evals, web storage, etc.
+<div class='separator' ></div>
 
-<div style='font-size:60px;font-weight:bold'>Make javascript unmissable</div>
-<b>Introducing yolpo: a visual javascript runner for presenting and testing.</b>
-<br><br>
 <h2>Written for JS API authors</h2>
 yolpo is a tool and a web site for javascript API authors.
 The tool looks a bit like a video player but it runs javascript.
@@ -34,64 +45,21 @@ This is the most natural way of presenting a program and a great fit for error d
 <h2>GitHub integration</h2>
 
 Use Gist GitHub to store code; then get yolpo to run it.
- 
 
-<!--
-
-
-<h2>Get started in minutes</h2>
-Just take a look at any example in explore; then try to write one yourself. Refer to the docs for further information.
+<div class='separator' ></div>
 
 
-<h2>A Static Web Application<h2>
-yolpo is a web application delivered directly to an end user's browser without any server-side customization of the HTML, CSS, or JavaScript content. 
-yolpo uses technologies in the browser instead of on the server to deliver dynamic content.
-
-<h2>100% javascript</h2>
-yolpo does not require you to learn a new language
-
-
-
-what else ??? 
-
-Combining the JSBin/JSFiddle/Codepen and mocha ...
-
-
-<h2>Let it be run</h2>
-There is the code for your JS API and then there is the code to exercise it.<xxBR>
-Do not just put that code in a test folder or somewhere in your documentation. Share it with yolpo.
-
-<h2>Forget eval and all of those witch hunters</h2>
-EvalMyJS is  really a statement-by-statement javascript interpreter. It does not 'eval' the snippet in its entirety.<br>
-A snippet is executed Programs start by executing the first statement and continue by executing all statements in sequence.
-This is great for error handling too.
- -->
-<!--
-<h2>A statement-by-statement javascript interpreter</h2>
-Forget eval and all of those witch hunters. At the heart of EvalMyJS is a statement-by-statement javascript interpreter.<xxBR>
-It enforces a sequential-execution-model (the most natural way of thinking of a program)<xxBR>
-Follow the flow with your finger.
- -->
-<!--
-<h2>100% javascript</h2>
-There is really nothing new to learn.
-Just try and think of your code as a sequence of plain and clear statements.
- -->
-
-<!--
-<h2>More than promises<!-- Asynchronous headaches solved </h2>
-Use waitUntil and load. The only two functions that can access the PC (process counter) of the javascript interpreter.
-See them in action here and here.
- -->
-
-<!--
-<h2>and more...</h2> 
+<div>
+<iframe style='width:100%;height:700px;border:0;background-color:white;overflow-y: hidden;' scrolling='no' src='player/v.html?gist=d2d19a00747991285307&autoplay=2' ></iframe>
+</div>
 <ul>
-<li>Integration on gist GitHub</li>
-<li>More than promises.</li>
-<li>Perfect for regression tests (Fail Fast)</li>
+<li>Tests do not rely upon any other library except the one they are testing</li>
+<li>Tests are 100% javascript.</li>
+<li>Tests are running on the browser</li>
 </ul>
- -->
+
+<div class='separator' ></div>
+ 
 </div>
 <div id='divFooter'>
 yolpo copyright 2015 
