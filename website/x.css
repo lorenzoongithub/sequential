@@ -41,7 +41,7 @@ a {
 	color:#fff;
 	font-size:11px;
 	font-weight:bold;
-	padding:0 10%;
+	padding:0 4%;
 	height:70px;
 	line-height:70px;
 }
@@ -61,6 +61,6 @@ a {
 /** only used by the various pages index.html, snippets.html, etc **/
 .main-content {
 	line-height: 1.5;
-	margin:60px 10%;
-	width:80%;
+	margin:60px 4%;
+	width:92%;
 }  
