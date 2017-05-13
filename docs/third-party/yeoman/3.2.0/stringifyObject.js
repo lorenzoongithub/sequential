@@ -21,6 +21,7 @@ var stringifyObject = (function() {
 	};
 	
 	var getOwnEnumPropSymbols = function getOwnEnumPropSymbols(object) {
+		if (Object.getOwnPropertySymbols == undefined) return []; // Trick for IE
 		return Object.getOwnPropertySymbols(object).filter(function (keySymbol) {
 			return object.propertyIsEnumerable(keySymbol);
 		});
