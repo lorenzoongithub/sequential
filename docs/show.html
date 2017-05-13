@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'><meta http-equiv='x-ua-compatible' content='ie=edge'>
+	<link rel="stylesheet" type="text/css" href="third-party/normalize/7.0.0/normalize.min.css">
+	<link rel="stylesheet" type="text/css" href="sequential.css">
+	<link rel="stylesheet" type="text/css" href="createHTMLSnippet.css">
+	<link rel='shortcut icon' href='favicon.ico' />
+	<title>Show - sequential</title>
+</head>
+<body>
+	<div id='header'>
+		<a href='index.html'><img src='sequential.176x50.png' style='padding: 0 20px 0 0; vertical-align: top;'></a>
+		<a href='editor.html'>editor</a>
+	</div>
+<div id='divResponse' ></div>
+<script src='locationr.js'></script>
+<script src='highlightCodeFragment.js'></script>
+<script src='createHTMLSnippet.js'></script>
+<script>
+var response = locationr.read();
+if (response == null) {
+	document.body.innerHTML = 'Sorry, we cannot resolve the URL<p>If you think the URL is correct, please contact us.';
+} else {
+	document.getElementById('divResponse').innerHTML = createHTMLSnippet(response);	
+}
+</script>
+<div id='wrapTwitter' style='display:none;position: absolute; top: 42px; right: 4%;'>
+<a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script>
+setTimeout(function() {
+	document.getElementById('wrapTwitter').style.display = 'block';
+},1000);
+</script>
+</div>
+</body>
+</html>

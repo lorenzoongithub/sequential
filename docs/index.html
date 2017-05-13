@@ -1,0 +1,61 @@
+<!docType HTML>
+<html lang=en>
+<head>
+	<meta charset='utf-8'><meta http-equiv='x-ua-compatible' content='ie=edge'>
+	<link rel="stylesheet" type="text/css" href="third-party/normalize/7.0.0/normalize.min.css">
+	<link rel="stylesheet" type="text/css" href="sequential.css">
+	<link rel='shortcut icon' href='favicon.ico' />
+	<title>Home - sequential</title>
+</head>
+<body>
+	<div id='header'>
+		<a href='index.html'><img src='sequential.176x50.png' style='padding: 0 20px 0 0; vertical-align: top;'></a>
+		<a href='editor.html'>editor</a>
+	</div>
+
+	<!-- 
+<b>Sequential Code Execution For Real</b>
+ -->
+ 
+<div> 
+A website for presenting works on JavaScript
+</div>
+<h2>Examples:</h2>
+<ul>
+<li><a href='show.html?%7B"statements"%3A%5B"%2F%2F"%2C"%2F%2F%20https%3A%2F%2Flodash.com%20"%2C"%2F%2F%20A%20modern%20JavaScript%20utility%20library%20delivering%20modularity%2C%20performance%20%26%20extras."%2C"%2F%2F"%2C"load(%27https%3A%2F%2Fcdnjs.cloudflare.com%2Fajax%2Flibs%2Flodash.js%2F4.17.4%2Flodash.min.js%27)%3B"%2C"console.log(_.defaults(%7B%20%27a%27%3A%201%20%7D%2C%20%7B%20%27a%27%3A%203%2C%20%27b%27%3A%202%20%7D))%3B"%2C"console.log(_.partition(%5B1%2C%2022%2C%203%2C%204%5D%2C%20n%20%3D>%20n%20%25%202))%3B"%5D%2C"logs"%3A%7B"5"%3A%5B"%7Ba%3A%201%2C%20b%3A%202%7D"%5D%2C"6"%3A%5B"%5B%5Cn%20%20%5B1%2C%203%5D%2C%5Cn%20%20%5B22%2C%204%5D%5Cn%5D"%5D%7D%2C"timestamp"%3A"2017-05-09T20%3A42%3A19.332Z"%2C"platform"%3A"Chrome%2058.0.3029.96%20on%20Windows%2010%2064-bit"%7D'>Lodash</a></li>
+<li><a href='show.html?%7B"statements"%3A%5B"%2F%2F"%2C"%2F%2F%20Babel%20https%3A%2F%2Fbabeljs.io%2F"%2C"%2F%2F%20https%3A%2F%2Fgithub.com%2Fbabel%2Fbabel-standalone"%2C"%2F%2F"%2C"load(%27https%3A%2F%2Funpkg.com%2Fbabel-standalone%406%2Fbabel.min.js%27)%3B"%2C"input%20%3D%20%27const%20getMessage%20%3D%20()%20%3D>%20%5C"Hello%20World%5C"%3B%27%3B"%2C"output%20%3D%20Babel.transform(input%2C%20%7B%20presets%3A%20%5B%27es2015%27%5D%20%7D).code%3B"%2C"console.log(output)%3B"%5D%2C"logs"%3A%7B"7"%3A%5B"%5C"use%20strict%5C"%3B%5Cn%5Cnvar%20getMessage%20%3D%20function%20getMessage()%20%7B%5Cn%20%20return%20%5C"Hello%20World%5C"%3B%5Cn%7D%3B"%5D%7D%2C"timestamp"%3A"2017-05-09T20%3A30%3A10.991Z"%2C"platform"%3A"Chrome%2058.0.3029.96%20on%20Windows%2010%2064-bit"%7D'>Babel.js</a></li>
+<li><a href='show.html?%7B"statements"%3A%5B"%2F%2F"%2C"%2F%2F%20AJV%20-%20The%20fastest%20JSON%20Schema%20Validator"%2C"%2F%2F%20http%3A%2F%2Fepoberezkin.github.io%2Fajv%2F"%2C"%2F%2F"%2C"load(%27https%3A%2F%2Fcdnjs.cloudflare.com%2Fajax%2Flibs%2Fajv%2F5.0.1%2Fajv.min.js%27)%3B"%2C"var%20ajv%20%3D%20new%20Ajv()%3B"%2C"var%20schema%20%3D%20%7B%20%5C"required%5C"%3A%20%5B%5C"name%5C"%2C%20%5C"surname%5C"%5D%20%7D%3B"%2C"console.log(ajv.validate(schema%2C%20%7B%27name%27%3A%27john%27%7D)%20)%3B"%2C"console.log(ajv.validate(schema%2C%20%7B%27name%27%3A%27john%27%2C%27surname%27%3A%27smith%27%7D)%20)%3B"%5D%2C"logs"%3A%7B"7"%3A%5B"false"%5D%2C"8"%3A%5B"true"%5D%7D%2C"timestamp"%3A"2017-05-09T21%3A37%3A36.208Z"%2C"platform"%3A"Chrome%2058.0.3029.96%20on%20Windows%2010%2064-bit"%7D'>AJV - JSON Schema Validator</a></li>
+</ul>
+
+<h2>Getting Started</h2>
+<ul>
+<li><a href='#'>Write Code</a></li>
+<li>Share the URL when satisfied</li>
+</ul>
+
+
+<h2>How does it work ?</h2>
+
+At its core, sequential is a statement-by-statement JavaScript interpreter. 
+This means that it does not <i>eval</i> code in its entirety. Instead, it breaks the code in sequential statements and starts by executing 
+the first statement and continue by executing all statements in sequence. 
+<p>
+This is a very natural way of presenting a program, a great fit for error discovery and simplifies comparisons.
+
+<h2>The Environment</h2>
+<ul>
+<li>When running your script sequential gives you a new global function <code>load(stringURL)</code> to let you load any external JavaScript library.</li>
+<li>Use <code>console.log( ... )</code> to display any valuable output from your code</li>
+</ul>
+ 
+<h2>Documentation</h2>
+<ul>
+<li><a href='#'>Writing your first</a></li>
+</ul>
+...
+
+ 
+<div style='margin:100px 0 10px 0;text-align:center;font-size:11px;'>sequential<br>MIT License - Copyright © 2017 - <a href="https://github.com/lorenzoongithub/">Lorenzo Puccetti</a>
+</div>
+</body>
+</html>

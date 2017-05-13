@@ -1,0 +1,46 @@
+<!docType HTML>
+<html lang=en>
+<head>
+	<meta charset='utf-8'><meta http-equiv='x-ua-compatible' content='ie=edge'>
+	<link rel="stylesheet" type="text/css" href="third-party/normalize/7.0.0/normalize.min.css">
+	<link rel="stylesheet" type="text/css" href="sequential.css">
+	<link rel='shortcut icon' href='favicon.ico' />
+	<title>Editor - sequential</title>
+	<style>
+	 	#editor      { position:absolute;margin-top:80px;top:0;left:1%;right:1%;bottom:10%;border:1px solid #888; }
+		#btnEval     { position:absolute;font-family:monospace;left:1%; top:90%;margin-top:5px;height:26px;cursor:pointer; }
+	</style>
+</head>
+<body>
+	<div id='header'>
+		<a href='index.html'><img src='sequential.176x50.png' style='padding: 0 20px 0 0; vertical-align: top;'></a>
+		<a href='editor.html'>editor</a>
+	</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js'></script>
+<script>window.ace || document.write('<script src="third-party/ace/1.2.3/ace.js"><\/script>');</script>
+<script src='locationr.js'></script>
+<pre id='editor'></pre>
+<input id='btnEval' type='button' value='Execute' />
+<script>
+var editor = ace.edit('editor');
+editor.setTheme('ace/theme/eclipse');
+editor.getSession().setMode('ace/mode/javascript');
+editor.$blockScrolling=Infinity;
+var oj = locationr.read();
+if (oj != null && oj.code != null) {
+	editor.setValue( oj.code );  
+} else if (sessionStorage.getItem('code') != null) {
+	editor.setValue( sessionStorage.getItem('code') );
+	sessionStorage.removeItem('code'); 
+} else {
+    editor.focus();
+}
+var btnEval =     document.getElementById('btnEval'); 
+btnEval.onclick= function() {
+	var code = editor.getValue(); 
+	sessionStorage.setItem('code', code)
+	locationr.write({code:code},'engine.html');
+};
+</script>
+</body>
+</html>
