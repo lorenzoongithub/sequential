@@ -8,16 +8,13 @@
 	<title>engine - sequential</title>
 </head>
 <body>
-	<div id='header'>
-		<a href='index.html'><img src='sequential.176x50.png' style='padding: 0 20px 0 0; vertical-align: top;'></a>
-		<a href='editor.html'>editor</a>
-	</div>
+<div id='header'><a href='index.html'><img src='sequential.176x50.png' width=176 height=50 alt="logo"/></a></div>
 <div style='font-style:italic;margin-top:60px; color:#ddd;font-size:28px'>computing...</div>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.4/platform.js'></script>
 <script>window.platform || document.write('<script src="third-party/platform/1.3.4/platform.min.js"><\/script>');</script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/esprima/2.7.3/esprima.min.js'></script>
 <script>window.esprima || document.write('<script src="third-party/esprima/2.7.3/esprima.min.js"><\/script>');</script>
-<script src='third-party/yeoman/3.2.0./stringifyObject.js'></script>
+<script src='third-party/yeoman/3.2.0/stringifyObject.js'></script>
 <script src='locationr.js'></script>
 <script src='sequential.js'></script>
 <script>
@@ -66,7 +63,7 @@
 			code:code,
 			timestamp : new Date().toISOString(),
 		    platform : platform.description 
-		},'show.html');
+		},'render.html');
 	}
 	
 	var stringifier = function(str) {
@@ -81,7 +78,7 @@
 	    sequential(stringifier, array, function(response) {
 	    	response.timestamp = new Date().toISOString();
 		    response.platform = platform.description;
-	     	locationr.replace( response, 'show.html');
+	     	locationr.replace( response, 'render.html');
 	    }); 
 	},0);
 
