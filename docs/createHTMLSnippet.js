@@ -61,7 +61,7 @@ function createHTMLSnippet(response) {
 	str+='<div class="footer">';
 	str+=response.platform+'\n';
 	str+=response.timestamp+'\n';
-	var encodedCode = encodeURI(JSON.stringify({code:code}));
+	var encodedCode = encodeURIComponent(JSON.stringify({code:code}));
 	var linkRun    = 'engine.html?'+encodedCode;
 	var linkEditor = 'editor.html?'+encodedCode;
 	str+='<a class="linkPlayer" href="'+linkRun+'">run</a> ';
