@@ -65,20 +65,19 @@
 }
 
 .player a {
-	
 	margin:2px 0;
 	font-weight:bold;
 	display:block;
 	vertical-align: text-bottom;
 	text-align:center;
-    width:50px;
+    width:60px;
     background-color: #1b95e0;
     color: #fff;
     border-radius: 3px;
     font-weight: 500;
 }
 
-player a:hover {
+.player a:hover {
 	background-color:#0c7abf;
 }
 

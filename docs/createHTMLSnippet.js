@@ -29,13 +29,11 @@ function escapeHTML(string) {
 }
 **/
 function createHTMLSnippet(response) {
-	
 	var str ='<div class="meta">';
 	str+='Recorded on '+response.platform+'\n';
 	str+='Executed '+moment(response.timestamp).fromNow()+'\n'
 	str+='</div>';
 	str+= '<div class="snippet">';
-	
 	if (response.syntaxError) {
 		str+= '<div class="syntaxError">'+escapeHTML(response.syntaxError)+'</div>';
 	} else {
@@ -57,8 +55,6 @@ function createHTMLSnippet(response) {
 		}
 		if (response.error || response.timeout) { str+='</div>'; }
 	}
-	
-	
 	str+='</div>';
 	return str; 
 }
