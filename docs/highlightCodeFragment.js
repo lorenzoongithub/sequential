@@ -21,7 +21,7 @@
 **/
 highlightCodeFragment = (function() {
 	
-	var kwd =    '<span style="font-weight:bold">';
+	var kwd =    '<span style="color:purple">';
 	var errCmm = '<span style="font-style:italic;color:red">';
 	var errStr = '<span style="color:red">';
 	var cmt =    '<span style="font-style:italic;color:green">';
