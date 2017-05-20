@@ -32,16 +32,23 @@ if (response == null) {
 	document.getElementById('linkEdit').href = 'editor.html?'+encodedCode;
 }
 </script>
-<!-- REMOVING TWITTER FOR NOW
+
 <div id='wrapTwitter' style='display:none;position: absolute; top: 42px; right: 4%;'>
 <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script>
-setTimeout(function() {
-	document.getElementById('wrapTwitter').style.display = 'block';
-},1000);
+if (location.protocol != 'file:') {
+    var script = document.createElement('script'); 
+    script.type = 'text/javascript'; 
+    script.async = true;
+    script.charset = 'utf-8'
+    script.src="//platform.twitter.com/widgets.js";
+    var s = document.getElementsByTagName('script')[0]; 
+    s.parentNode.insertBefore(script, s);
+	setTimeout(function() {
+		document.getElementById('wrapTwitter').style.display = 'block';
+	},1000);
+}
 </script>
 </div>
- -->
 </body>
 </html>
