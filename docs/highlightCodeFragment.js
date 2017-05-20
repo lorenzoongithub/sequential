@@ -1,8 +1,7 @@
 //
-// Possible TODOs
+// 'Possible' TODOs:
 // highlight bracketings (( ))
-// emphasize console.log
-// embed styles (so that they don't need to be defined outside) 
+// emphasize console.log 
 //
 
 

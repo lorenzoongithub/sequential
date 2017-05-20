@@ -30,16 +30,16 @@ function escapeHTML(string) {
 **/
 function createHTMLSnippet(response) {
 	
-
-	
-	var str = '<div class="snippet">';
-	var code; 
+	var str ='<div class="meta">';
+	str+='Recorded on '+response.platform+'\n';
+	str+='Executed '+moment(response.timestamp).fromNow()+'\n'
+	str+='</div>';
+	str+= '<div class="snippet">';
 	
 	if (response.syntaxError) {
 		str+= '<div class="syntaxError">'+escapeHTML(response.syntaxError)+'</div>';
 	} else {
 		var statements = response.statements;
-		code = response.statements.join('\n');
 		var length = statements.length;
 		for (var i=0;i<length;i++) {
 			str+='<div class="statement">'+highlightCodeFragment(statements[i])+'</div>';
@@ -58,15 +58,7 @@ function createHTMLSnippet(response) {
 		if (response.error || response.timeout) { str+='</div>'; }
 	}
 	
-	str+='<div class="footer">';
-	str+=response.platform+'\n';
-	str+=response.timestamp+'\n';
-	var encodedCode = encodeURIComponent(JSON.stringify({code:code}));
-	var linkRun    = 'engine.html?'+encodedCode;
-	var linkEditor = 'editor.html?'+encodedCode;
-	str+='<a class="linkPlayer" href="'+linkRun+'">run</a> ';
-	str+='<a class="linkPlayer" href="'+linkEditor+'">edit</a>';
-	str+='</div>';
+	
 	str+='</div>';
 	return str; 
 }

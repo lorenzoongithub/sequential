@@ -19,6 +19,23 @@
 <pre id='editor'></pre>
 <input id='btnEval' type='button' value='Execute' />
 <script>
+
+// a quick mock-polyfill for sessionStorage. 
+var storage = (function() {
+	var mock = { 
+		getItem : function() {},
+		setItem : function() {},
+		removeItem : function() {} 
+	};
+	try {
+		return window.sessionStorage != null ? sessionStorage : mock;  	
+	} catch (e) {
+		 // IE on file:/// URL throws an exception if we access window.sessionStorage.
+		return mock;
+	}
+})();
+
+
 var editor = ace.edit('editor');
 editor.setTheme('ace/theme/eclipse');
 editor.getSession().setMode('ace/mode/javascript');
@@ -26,16 +43,16 @@ editor.$blockScrolling=Infinity;
 var oj = locationr.read();
 if (oj != null && oj.code != null) {
 	editor.setValue( oj.code );  
-} else if (sessionStorage.getItem('code') != null) {
-	editor.setValue( sessionStorage.getItem('code') );
-	sessionStorage.removeItem('code'); 
+} else if (storage.getItem('code') != null) {
+	editor.setValue( storage.getItem('code') );
+	storage.removeItem('code'); 
 } else {
     editor.focus();
 }
 var btnEval =     document.getElementById('btnEval'); 
 btnEval.onclick= function() {
 	var code = editor.getValue(); 
-	sessionStorage.setItem('code', code)
+	storage.setItem('code', code)
 	locationr.write({code:code},'engine.html');
 };
 </script>

@@ -1,8 +1,9 @@
 .snippet {
+	line-height:120%;
     white-space: pre;
 	font-family:monospace;
-    font-size:14px;
-    margin:0;
+    font-size:12px;
+    margin:30px 0;
     padding:0;
 }
 
@@ -35,42 +36,50 @@
 
 
 .statement {
-	line-height:180%;
+	
 }
-.statement:hover { background-color: #f9f9f9; }
+.statement:hover { background-color: #f2f2f2; }
 
 .log {
-	margin:2px 0 20px 0;
-    padding:6px;
+	margin:4px 0 16px 0;
+    padding:5px;
     border-radius:6px;
     border:1px solid #888;
-    background-color:#ddd;
+    background-color:#d8d8d8;
     animation: fadein 0.5s;    
 }
 
-.footer {
+.meta {
+	font-family:sans-serif;
 	font-size:11px;
-	border-top:1px solid orange;
-    margin-top:20px; 
-    text-align:right;
+	font-weight:bold;
+	line-height:120%;
+    white-space: pre;
 }
 
-.linkPlayer {
-	display:inline-block;
-	vertical-align: top;
+.player {
+	position:fixed;
+	top:80px; 
+	font-size:11px;
+	right:4%;
+}
+
+.player a {
+	
+	margin:2px 0;
+	font-weight:bold;
+	display:block;
+	vertical-align: text-bottom;
 	text-align:center;
-    width:40px;
-    height: 16px;
-    padding: 4px 8px 10px 6px;
+    width:50px;
     background-color: #1b95e0;
     color: #fff;
     border-radius: 3px;
     font-weight: 500;
 }
 
-.linkPlayer:hover {
-	color: #fff;
-    background-color:#0c7abf;
+player a:hover {
+	background-color:#0c7abf;
 }
 
 @keyframes fadein {

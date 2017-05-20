@@ -10,18 +10,29 @@
 </head>
 <body>
 <div id='header'><a href='index.html'><img src='sequential.176x50.png' width=176 height=50 alt="logo"/></a></div>
+<div class='player'>
+	<a id ='linkRun'  href='#'>run</a>
+	<a id ='linkEdit' href='#'>edit</a>
+	<a id ='linkDiff' href='javascript:alert("coming soon")'>diff</a>
+</div>
 <div id='divResponse' ></div>
 <script src='locationr.js'></script>
 <script src='highlightCodeFragment.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
+<script>window.moment || document.write('<script src="third-party/moment.js/2.18.1/moment.min.js"><\/script>');</script>
 <script src='createHTMLSnippet.js'></script>
 <script>
 var response = locationr.read();
 if (response == null) {
 	document.body.innerHTML = 'Sorry, we cannot resolve the URL<p>If you think the URL is correct, please contact us.';
 } else {
-	document.getElementById('divResponse').innerHTML = createHTMLSnippet(response);	
+	document.getElementById('divResponse').innerHTML = createHTMLSnippet(response);
+	var encodedCode = encodeURIComponent(JSON.stringify({code: response.statements.join('\n')}));
+	document.getElementById('linkRun').href =  'engine.html?'+encodedCode;
+	document.getElementById('linkEdit').href = 'editor.html?'+encodedCode;
 }
 </script>
+<!-- REMOVING TWITTER FOR NOW
 <div id='wrapTwitter' style='display:none;position: absolute; top: 42px; right: 4%;'>
 <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -31,5 +42,6 @@ setTimeout(function() {
 },1000);
 </script>
 </div>
+ -->
 </body>
 </html>
