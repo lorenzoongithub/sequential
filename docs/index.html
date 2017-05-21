@@ -10,10 +10,14 @@
 <body>
 <div id='header'><a href='index.html'><img src='sequential.176x50.png' width=176 height=50 alt="logo"/></a></div>
  
-<div style='margin:16px 0;text-align:center;font-size:11px;font-weight:bold;border:1px solid #888;background-color:#ffe;'>
-Warning: sequential is still in an early development stage and not ready for production use just yet
+
+<div style='margin:16px 0;text-align:center;font-size:11px;font-weight:bold;border:1px solid #faebcc;color:#8a6d3b;background-color:#fcf8e3;;border-radius:3px;'>
+<b>Warning!</b> sequential is still in an early development stage and not ready for production use just yet
 </div> 
 <div>A website for presenting works on JavaScript</div>
+<div>
+<em>&ldquo;Sometimes writing a few lines of JavaScript code is the best way to explain how something works.&rdquo;</em>
+</div>
 <h2>Examples:</h2>
 <ul>
 <li><a href='render.html?%7B%22statements%22:%5B%22//%22,%22//%20https://lodash.com%20%22,%22//%20A%20modern%20JavaScript%20utility%20library%20delivering%20modularity,%20performance%20&%20extras.%22,%22//%22,%22load(%27https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js%27);%22,%22console.log(_.defaults(%7B%20%27a%27:%201%20%7D,%20%7B%20%27a%27:%203,%20%27b%27:%202%20%7D));%22,%22console.log(_.partition(%5B1,%2022,%203,%204%5D,%20function%20(n)%20%7B%5Cn%20%20return%20n%20%25%202;%5Cn%7D));%22%5D,%22logs%22:%7B%225%22:%5B%22%7Ba:%201,%20b:%202%7D%22%5D,%226%22:%5B%22%5B%5Cn%20%20%5B1,%203%5D,%5Cn%20%20%5B22,%204%5D%5Cn%5D%22%5D%7D,%22timestamp%22:%222017-05-13T22:01:13.786Z%22,%22platform%22:%22IE%2011.0%2032-bit%20on%20Windows%2010%2064-bit%22%7D'>Lodash</a></li>
@@ -34,16 +38,20 @@ Warning: sequential is still in an early development stage and not ready for pro
 </ul>
 
 <h2>Getting Started</h2>
-<ul>
-<li><a href='editor.html?%7B"code"%3A"%2F%2F%5Cn%2F%2F%20Welcome%20to%20sequential%20%20%5Cn%2F%2F%20Try%20to%20write%20simple%20sequential%20JavaScript%20%20%5Cn%2F%2F%20and%20see%20its%20code%20execution.%5Cn%2F%2F%20Use%3A%5Cn%2F%2F%20-%20console.log(%20any%20)%3B%20%2F%2F%20to%20log%20any%20object%5Cn%2F%2F%20-%20load%20(urlString)%20%20%20%20%2F%2F%20to%20load%20any%20external%20JavaScript%20library%5Cn%2F%2F%5Cn%2F%2F%20%5Cnconsole.log(%27hello%20sequential%27)%3B"%7D'>Write code</a></li>
-</ul>
-
+<div>
+<a href='editor.html?%7B"code"%3A"%2F%2F%5Cn%2F%2F%20Welcome%20to%20sequential%20%20%5Cn%2F%2F%20Try%20to%20write%20simple%20sequential%20JavaScript%20%20%5Cn%2F%2F%20and%20see%20its%20code%20execution.%5Cn%2F%2F%20Use%3A%5Cn%2F%2F%20-%20console.log(%20any%20)%3B%20%2F%2F%20to%20log%20any%20object%5Cn%2F%2F%20-%20load%20(urlString)%20%20%20%20%2F%2F%20to%20load%20any%20external%20JavaScript%20library%5Cn%2F%2F%5Cn%2F%2F%20%5Cnconsole.log(%27hello%20sequential%27)%3B"%7D'>Write JavaScript</a>, run it and share the URL when satisfied.
+</div>
 <h2>The Environment</h2>
 <ul>
 <li>Use <code>load( urlString )</code> to load any external JavaScript library</li>
 <li>Use <code>console.log( any )</code> to display any valuable output from your code</li>
 </ul>
- 
+<div>
+At its core, sequential is a statement-by-statement JavaScript interpreter. 
+This means that it does not <code>eval</code> code in its entirety. 
+Instead, it starts by executing the first statement and continue by executing all statements in sequence. 
+This is the most natural way of presenting a program and a great fit for error discovery too.
+</div> 
 <div style='margin:100px 0 10px 0;text-align:center;font-size:11px;'>sequential<br>MIT License - Copyright © 2017 - <a href="https://github.com/lorenzoongithub/">Lorenzo Puccetti</a></div>
 <a href="https://github.com/lorenzoongithub/sequential"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 

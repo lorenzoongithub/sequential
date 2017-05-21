@@ -9,3 +9,4 @@ sequential is a complete client side solution for creating and sharing short sni
 Every snippet can access any external library and it records time of execution and details on the platform.
 It can be re-run and modified.
 
+<img src='sequential.in.action.gif' alt='sequential in action' />
