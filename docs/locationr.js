@@ -1,7 +1,6 @@
 /**
- *
- *
- *
+ * A wrapper for window.location to provide a basic implementation for JSON + URL encoding
+ * 
 **/
 locationr = {
 	read : function() {
@@ -11,6 +10,10 @@ locationr = {
 		} catch (e) {
 			return null;
 		}
+	},
+	linkify : function(oj,page) {
+		var str = JSON.stringify(oj);
+		return page+'?'+encodeURIComponent(str);
 	},
 	write : function(oj,page) {
 		var str = JSON.stringify(oj);

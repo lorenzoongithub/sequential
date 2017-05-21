@@ -11,9 +11,8 @@
  *    }
  * 
  * 
- * note: sequential brutally overrides console.log
- * 
- * requires 'stringifyObject' to serialize the logs.
+ * Note I:  sequential brutally overrides console.log and onerror
+ * Note II: It requires a stringifyObject (a function to stringify any object to a string) to serialize the logs.
  *  
 **/
 function sequential(stringifyObject, statements, callback) {
@@ -42,8 +41,6 @@ function sequential(stringifyObject, statements, callback) {
 
 	// brutally overrides console.log
 	console.log = function(object) {
-		// TODO: The stringification needs to improve !!!
-		// var value = typeof object == 'string' ? object : JSON.stringify(object); 
 		var value = (typeof object == 'string') ? object : stringifyObject(object); // <-- now we use stringifyObject.js
 	    if (response.logs[lineNo]) response.logs[lineNo].push(value); 
 		else                       response.logs[lineNo] = [ value ];  
@@ -98,7 +95,7 @@ function sequential(stringifyObject, statements, callback) {
 					setTimeout(loopy,100);                          // retry after 100ms
 					return;	
 				}   
-			} catch (e) { // Note the exception can only catch the eval execution.
+			} catch (e) { // Note the exception MUST only catch the eval execution.
 				response.error = lineNo; 
 				response.errorMessage = e+'';
 				callback(response); 
