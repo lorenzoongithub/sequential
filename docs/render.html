@@ -27,7 +27,8 @@ if (response == null) {
 	document.body.innerHTML = 'Sorry, we cannot resolve the URL<p>If you think the URL is correct, please contact us.';
 } else {
 	document.getElementById('divResponse').innerHTML = createHTMLSnippet(response);
-	var encodedCode = locationr.linkify({code: response.statements.join('\n')},'');
+	var code = response.code ? response.code : response.statements.join('\n'); 
+	var encodedCode = locationr.linkify({code: code},'');
 	document.getElementById('linkRun').href =  'engine.html'+encodedCode;
 	document.getElementById('linkEdit').href = 'editor.html'+encodedCode;
 }
