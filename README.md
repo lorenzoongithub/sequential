@@ -1,11 +1,5 @@
 ![sequential](sequential.png)
 
-# Read. Write. Show.
-
-
-###### Distilling minimal code.
-
-
 ## What does it do?
 
 sequential shows JavaScript code execution
