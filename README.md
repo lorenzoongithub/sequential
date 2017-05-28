@@ -32,9 +32,9 @@ A typical piece consists of all or some of those parts:
 
 ## How does it compare with other code playgrounds such as codepen or jsfiddle ?
 
-Those are bigger _beasts_ than sequential: fully fledged solutions covering all aspects of Web Development (HTML, CSS, JavaScript)
+Those are bigger _beasts_ than sequential: fully fledged solutions covering all aspects of Web Development (HTML, CSS, JavaScript).
 Instead, sequential focuses only on JavaScript execution without involving _(as mush as possible)_ any DOM object.
-sequential also records metadata such as the time and the platform where the snippet was executed (to help execution comparisons) 
+sequential also records metadata, such as the time and the platform where the snippet was executed. 
 In a sentence: **sequential is not executing code to create a page, is creating a page to show code execution.**
 
 
