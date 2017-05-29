@@ -11,9 +11,11 @@
 <body>
 <div id='header'><a href='index.html'><img src='sequential.176x50.png' width=176 height=50 alt="logo"/></a></div>
 <div class='player'>
-	<a id ='linkRun'  href='#'>Run</a>
-	<a id ='linkEdit' href='#'>Edit</a>
-	<a id ='linkDiff' href='javascript:alert("sorry.\nnot implemented yet.\n")'>Diff</a>
+    <a title='Create a new snippet' id ='linkNew'  href='editor.html?%7B%22code%22%3A%22%22%7D'>New</a>
+    <hr>
+    <a title='Edit the code'       id ='linkEdit' href='#'>Edit</a>
+	<a title='Run the snippet now' id ='linkRun'  href='#'>Run</a>
+	<a title='Compare execution'   id ='linkDiff' href='javascript:alert("sorry.\nnot implemented yet.\n")'>Diff</a>
 </div>
 <div id='divResponse' ></div>
 <script src='locationr.js'></script>
@@ -33,7 +35,7 @@ if (response == null) {
 	document.getElementById('linkEdit').href = 'editor.html'+encodedCode;
 }
 </script>
-
+<!-- 
 <div id='wrapTwitter' style='display:none;position: absolute; top: 15px; right: 4%;'>
 <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
 <script>
@@ -51,5 +53,6 @@ if (location.protocol != 'file:') {
 }
 </script>
 </div>
+ -->
 </body>
 </html>
