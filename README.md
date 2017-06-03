@@ -143,7 +143,16 @@ Fail fast. If an error occurs sequential doesn't continue.
 Intent: I am opinionated again: I assume that if an error happens there is no need to go any further.  
  
 Sandboxing. Sandboxing JavaScript code execution is difficult. This is achieved by isolating the execution on its own page (engine.html) and by showing the result on a different page (render.html)
- 
+
+## Roadmap
+
+It's a misty one but those are a few things I'd like to have:
+
+- Ability to easily embed on external site (e.g. IFrame , embed.ly, script )
+- Ability to compare/diff executions (i.e. to highlight differences between browsers)
+- Better and Simpler (more minimal) UI
+- Better encoding/decoding for URL
+
 ## Issues
 
 Report any issue using GitHub and use notifications to track progress on them.
