@@ -24,8 +24,8 @@ highlightCodeFragment = (function() {
 	var kwd =    '<span style="color:purple">';
 	var errCmm = '<span style="font-style:italic;color:red">';
 	var errStr = '<span style="color:red">';
-	var cmt =    '<span style="font-style:italic;color:green">';
-	var stg =    '<span style="color:blue">';
+	var cmt =    '<span style="color:#969896">';
+	var stg =    '<span style="color:#183691">';
 	
 	// keyword separator examples: "function(", "try{", 
 	var isKeywordSeparator = function(ch) { 
