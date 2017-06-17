@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'><meta http-equiv='x-ua-compatible' content='ie=edge'>
+	<style>
+	pre { color:#555; margin:0;padding:12px;font-size:13px;line-height:20px;background-color:rgba(0, 0, 0, 0.05);}
+	body { margin:0;padding:0;}
+	</style>
+</head>
+<body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js'></script>
+<script>window.LZString || document.write('<script src="third-party/lz-string/1.4.4/lz-string.min.js"><\/script>');</script>
+<script src='locationr.js'></script>
+<script>
+//https://github.com/janl/mustache.js/blob/master/mustache.js#L60
+var entityMap = {
+	'&' : '&amp;',
+	'<' : '&lt;',
+	'>' : '&gt;',
+	'"' : '&quot;',
+	"'" : '&#39;',
+	'/' : '&#x2F;',
+	'`' : '&#x60;',
+	'=' : '&#x3D;'
+};
+
+function escapeHTML(string) {
+	return String(string).replace(/[&<>"'`=\/]/g, function(s) {
+		return entityMap[s];
+	});
+}
+
+
+var response = locationr.read();
+if (response == null) {
+	document.body.innerHTML = 'Sorry, we cannot resolve the URL<p>If you think the URL is correct, please contact us.';
+} else {
+	document.body.innerHTML = JSON.stringify(response)
+	var statements = response.statements;
+	var length = statements.length;
+	var str = '';
+		
+	str+='<pre>';
+	str+='<code>';
+	for (var i=0;i<length;i++) {
+		var s = statements[i];
+		var s02 = s.substring(0,2);
+		if (s02 == '//' || s02 == '/*') continue; 
+		if (s.substring(0,5) == 'load(') continue; 
+		str+=escapeHTML(s);
+		str+='\n';
+		if (response.logs[i]) {
+			str+='<i>// '+escapeHTML(response.logs[i])+'</i> ';
+			break;
+		}
+	}
+	
+	// to do if the str has too many \n 
+	// we should truncate it nicely with ...
+	
+	
+	str+='<a style="float:right" title="See it on sequential"  href="https://lorenzoongithub.github.io/sequential/render.html'+location.search+'">'+
+		 '<img src="embed.png" style="vertical-align:bottom;border-radius:4px;"></a>';
+	str+='</code>';
+    str+='</pre>';
+		
+	
+	document.body.innerHTML = str+'</pre>'; 
+}
+
+</script>
+</body>
+</html>
