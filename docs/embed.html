@@ -3,14 +3,15 @@
 <head>
 	<meta charset='utf-8'><meta http-equiv='x-ua-compatible' content='ie=edge'>
 	<style>
-	pre { color:#555; margin:0;padding:12px;font-size:13px;line-height:20px;background-color:rgba(0, 0, 0, 0.05);}
-	body { margin:0;padding:0;}
+	pre {color:#555; margin:0;padding:12px;font-size:13px;line-height:20px;}
+	body {margin:0;padding:0;overflow:hidden;background-color:rgba(0, 0, 0, 0.05);}
 	</style>
 </head>
 <body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js'></script>
 <script>window.LZString || document.write('<script src="third-party/lz-string/1.4.4/lz-string.min.js"><\/script>');</script>
 <script src='locationr.js'></script>
+<script src='highlightCodeFragment.js'></script>
 <script>
 //https://github.com/janl/mustache.js/blob/master/mustache.js#L60
 var entityMap = {
@@ -47,10 +48,10 @@ if (response == null) {
 		var s02 = s.substring(0,2);
 		if (s02 == '//' || s02 == '/*') continue; 
 		if (s.substring(0,5) == 'load(') continue; 
-		str+=escapeHTML(s);
+		str+=highlightCodeFragment(s);
 		str+='\n';
 		if (response.logs[i]) {
-			str+='<i>// '+escapeHTML(response.logs[i])+'</i> ';
+			str+='<span style="border-left:2px solid #555;margin:1px 0;padding:4px;background-color:#888;color:white;">'+escapeHTML(response.logs[i])+'</span> ';
 			break;
 		}
 	}
