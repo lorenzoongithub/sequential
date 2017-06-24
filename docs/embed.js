@@ -1,7 +1,7 @@
 
 //
 // when the oembed service is called it will return an HTML like this: 
-// <script src='embed.js?Zaaaa12'></script>
+// <script src='embed.js#Zaaaa12'></script>
 //  
 // embed.js is responsible of
 // - finding itself 
@@ -17,7 +17,7 @@
 	for (var i = 0; i < scripts.length; ++i) {
 		var x = scripts[i];
 		console.log(x.src);
-		if (x.src.indexOf('embed.js?') == -1) continue; // skip: it's some other script.
+		if (x.src.indexOf('embed.js#') == -1) continue; // skip: it's some other script.
 		var elem = x.nextElementSibling;
 		if (elem != null && elem.className == 'embed-js') continue;  // skip: we handled this script already. 
 		script = x;
@@ -27,7 +27,7 @@
 		console.log('error: invoked wrongly. Since we could not find the script'); 
 		return; // error: we could not find the script 
 	}
-	var zip = x.src.substring( x.src.indexOf('embed.js?') + 8 );
+	var zip = x.src.substring( x.src.indexOf('embed.js#') + 8 );
 	 
 	var height = 300; // for now.
 	

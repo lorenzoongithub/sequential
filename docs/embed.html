@@ -51,7 +51,7 @@ if (response == null) {
 		str+=highlightCodeFragment(s);
 		str+='\n';
 		if (response.logs[i]) {
-			str+='<span style="border-left:2px solid #555;margin:1px 0;padding:4px;background-color:#888;color:white;">'+escapeHTML(response.logs[i])+'</span> ';
+			str+='<div style="border-left:2px solid #555;margin:1px 0;padding:4px;background-color:#ddd;">'+escapeHTML(response.logs[i])+'</div> ';
 			break;
 		}
 	}
@@ -60,7 +60,7 @@ if (response == null) {
 	// we should truncate it nicely with ...
 	
 	
-	str+='<a style="float:right" title="See it on sequential" target="_blank" href="https://lorenzoongithub.github.io/sequential/render.html'+location.search+'">'+
+	str+='<a style="float:right" title="See it on sequential" target="_blank" href="https://lorenzoongithub.github.io/sequential/render.html'+encodeURIComponent(location.hash)+'">'+
 		 '<img src="embed.png" style="vertical-align:bottom;border-radius:4px;"></a>';
 	str+='</code>';
     str+='</pre>';
