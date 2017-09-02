@@ -107,34 +107,10 @@ editor.focus();
 //Experimental code: if it is an IFrame 
 //and during rendering we have the horizontal scrollBar visible we resize it
 setTimeout(function() { 
-if (editor.renderer.scrollBarH.isVisible) {
-	console.error("resizing !!!")
-	editor.setFontSize(10);  // TO DO: the tip/title should be added. 
-}	
+	if (editor.renderer.scrollBarH.isVisible) {
+		editor.setFontSize(10);  
+	}	
 },0); 
-
-//
-// GOTCHAS/ISSUE:
-//
-// - typing a for loop might end up with executing an infinite one
-//   e.g. for (var i=0;i<100; )
-//
-// - it's possible to write a snippet which appears to work but it's broken as it relies on a variable that is not defined.
-//   This happens because the snippet is repeatedly executed. So a line might be created 
-//
-// - console.log can only be used once.
-//
-// - Your JS is not fully sandboxed. There are some global variables make sure you don't use them (unless you really want to use them)
-//   e.g. don't use the variable editor.
-//
-// -
-//
-// List of things that would be nice to customize:
-// - initial font size  (?)
-// - inlineCharacterLimit for stringifier 
-// - background color (and possibly other CSS aspects e.g. font)
-// - ability to create IFrame snippet of code / ready to copy paste
-
 </script>
 </body>
 </html>
