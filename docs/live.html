@@ -1,0 +1,140 @@
+<!docType HTML>
+<html lang=en>
+<head>
+	<meta charset='utf-8'><meta http-equiv='x-ua-compatible' content='ie=edge'>
+	<link rel='shortcut icon' href='favicon.ico' />
+	<title>live</title>
+	<style>
+		a {color:#428bca;text-decoration:none;cursor:pointer}
+		a:hover,
+		a:focus {color:#2a6496;text-decoration:underline}
+		#editor { position:fixed;top:0;left:0;right:0;bottom:0;margin:0;padding:0; }
+		body { background-color:#F9F9F9;}
+		@media screen and (min-width: 600px) { #editor { position:fixed;top:3px;left:3px;right:3px;bottom:3px;margin:0;padding:0;}
+	</style>
+</head>
+<body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js'></script>
+<script>window.ace || document.write('<script src="third-party/ace/1.2.3/ace.js"><\/script>');</script>
+<script src='third-party/yeoman/3.2.0/stringifyObject.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js'></script>
+<script>window.LZString || document.write('<script src="third-party/lz-string/1.4.4/lz-string.min.js"><\/script>');</script>
+<pre id='editor'></pre>
+<a href='https://sequential.js.org/' target='_top' style='position:fixed;z-index:1000;bottom:4px;right:4px;font-weight:bold;font-size:11px;'>sequential.js</a>
+<script>
+var editor = ace.edit('editor');
+editor.getSession().setUseWorker(false); // prevent worker to signal warning / errors as you type.
+editor.setShowFoldWidgets(false);        // disable autofolding (since code is constantly regenerated this feature would not work nicely)
+editor.setTheme('ace/theme/dawn');
+editor.getSession().setMode('ace/mode/javascript');
+editor.$blockScrolling=Infinity; // required to prevent some console.warn 
+editor.renderer.setShowGutter(false); // hide line numbers when using the ace editor		
+editor.setShowPrintMargin(true); // I am torn whether we need this or not ?
+editor.setFontSize(16);
+		
+try {
+   editor.setValue( LZString.decompressFromEncodedURIComponent(location.hash.substring(1)) );
+} catch (e) {
+	; // should fail here only if the location.hash can not be decompressed.
+}
+
+editor.clearSelection();
+editor.focus();
+
+
+(function() { 
+	var nativeConsoleLog = console.log;  
+	var loadedURLs={};
+
+	window.load = function(url) {
+		if (loadedURLs[url]) { return; }
+		loadedURLs[url] = 1;
+		var script = document.createElement('script'); 
+		script.type  = 'text/javascript';
+		script.async = true;
+		script.src   = url
+		var entry = document.getElementsByTagName('script')[0];
+		entry.parentNode.insertBefore(script, entry);	
+	};
+	
+	function commentify(oj) {
+		var str = stringifyObject(oj, {
+			inlineCharacterLimit : 30		
+		});
+		
+	
+		var array = str.split('\n');
+		for (var i=0;i<array.length;i++) {
+			array[i] = '//> '+array[i];
+			if (array[i].length > 180) { 
+				array[i] = array[i].substring(0,177)+'...'; // let's not make any string longer than n chars.
+			}
+		}
+		return '\n'+array.join('\n');
+	}
+	
+	
+	(function loopy() {
+		function addTail(tail) {
+			var code = editor.getValue(); 
+			code = code.replace(/\r?\n/g, '\n'); // Making sure that any \r\n becomes \n
+			var array = code.split('\n');
+			var array2 = [];
+			for (var i=0;i<array.length;i++) {
+				if (array[i].indexOf('//> ') !== 0) array2.push(array[i]);
+			}
+			code = array2.join('\n')+ tail;
+			var pos = editor.getCursorPosition();
+			editor.setValue(code);
+			editor.navigateTo(pos.row,pos.column);
+		}
+		
+		if (editor.getSelectedText() == '') {
+			addTail('');
+			if (editor.getValue() == '') location.replace('live.html#');
+			else             	         location.replace('live.html#'+LZString.compressToEncodedURIComponent( editor.getValue() ));
+			console.log = function(oj) { 
+				addTail(commentify(oj));
+			};
+			try { eval(editor.getValue()); } catch (e) { console.log(''+e); }
+			console.log = nativeConsoleLog; 
+		}  
+		setTimeout(loopy, 1000); 
+	})();
+})();
+
+
+//Experimental code: if it is an IFrame 
+//and during rendering we have the horizontal scrollBar visible we resize it
+setTimeout(function() { 
+if (editor.renderer.scrollBarH.isVisible) {
+	console.error("resizing !!!")
+	editor.setFontSize(10);  // TO DO: the tip/title should be added. 
+}	
+},0); 
+
+//
+// GOTCHAS/ISSUE:
+//
+// - typing a for loop might end up with executing an infinite one
+//   e.g. for (var i=0;i<100; )
+//
+// - it's possible to write a snippet which appears to work but it's broken as it relies on a variable that is not defined.
+//   This happens because the snippet is repeatedly executed. So a line might be created 
+//
+// - console.log can only be used once.
+//
+// - Your JS is not fully sandboxed. There are some global variables make sure you don't use them (unless you really want to use them)
+//   e.g. don't use the variable editor.
+//
+// -
+//
+// List of things that would be nice to customize:
+// - initial font size  (?)
+// - inlineCharacterLimit for stringifier 
+// - background color (and possibly other CSS aspects e.g. font)
+// - ability to create IFrame snippet of code / ready to copy paste
+
+</script>
+</body>
+</html>

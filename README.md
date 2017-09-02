@@ -13,7 +13,7 @@ console.log(i*2);
 ≫ 4.5
 ```
 
-[live example](https://lorenzoongithub.github.io/sequential/render.html?%7B%22statements%22%3A%5B%22var%20i%3D5%2F4%3B%22%2C%22i%2B%2B%3B%22%2C%22console.log(i)%3B%22%2C%22console.log(i*2)%3B%22%5D%2C%22logs%22%3A%7B%222%22%3A%5B%222.25%22%5D%2C%223%22%3A%5B%224.5%22%5D%7D%2C%22timestamp%22%3A%222017-05-28T22%3A17%3A33.825Z%22%2C%22platform%22%3A%22Chrome%2058.0.3029.110%20on%20Windows%2010%2064-bit%22%7D)
+[live example](https://sequential.js.org/render.html#ZN4IgzgLghhCmC2sB2EwgFwG0QDcoCcACASwF4BWAegBYBuEAGhGIGoX6mBjAeyTG4A2sAHQDuAcwAUxAJQcQPPoJFipxAFQAmOSAC6TVWnShNGbJuGbyepgGYzIasOu6AvkwjFEkKPAAOGCCaAAwAjADsALTBUcGaACqaoejUwei2AJzCABzBGQBajCB+AjAAZtz48IEAwgAW+NyIhORZwcK2MaHCoaHkhLyEAOrESAAm3ADuYIShwYQAbNSRAEbEECCuQA)
 
 
 ## What is it for ?

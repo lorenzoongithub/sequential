@@ -1,6 +1,4 @@
-body { font-family:sans-serif; margin:80px 4% 4% 4%; line-height:150%}
+body { font-family:sans-serif; line-height:150%}
 a {color:#428bca;text-decoration:none;cursor:pointer}
 a:hover,
-a:focus{color:#2a6496;text-decoration:underline}
-#header { position:absolute;top:0;left:0;right:0;height:50px;color:white;background-color:#000;line-height:50px;padding:0 4%; }
- 
+a:focus{color:#2a6496;text-decoration:underline} 
