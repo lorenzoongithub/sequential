@@ -8,12 +8,10 @@ sequential shows JavaScript code execution
 var i=5/4;
 i++;
 console.log(i);
-≫ 2.25
-console.log(i*2);
-≫ 4.5
+// > 2.25
 ```
 
-[live example](https://sequential.js.org/render.html#ZN4IgzgLghhCmC2sB2EwgFwG0QDcoCcACASwF4BWAegBYBuEAGhGIGoX6mBjAeyTG4A2sAHQDuAcwAUxAJQcQPPoJFipxAFQAmOSAC6TVWnShNGbJuGbyepgGYzIasOu6AvkwjFEkKPAAOGCCaAAwAjADsALTBUcGaACqaoejUwei2AJzCABzBGQBajCB+AjAAZtz48IEAwgAW+NyIhORZwcK2MaHCoaHkhLyEAOrESAAm3ADuYIShwYQAbNSRAEbEECCuQA)
+[live example](https://sequential.js.org/live.html#G4QwTgBAlgvArAegCwG4BQUDUn0GMD2AdgM74A2ApgHRn4DmAFFAJQpA)
 
 
 ## What is it for ?
@@ -34,115 +32,12 @@ A typical piece consists of all or some of those parts:
 
 Those are bigger _beasts_ than sequential: fully fledged solutions covering all aspects of Web Development (HTML, CSS, JavaScript).
 Instead, sequential focuses only on JavaScript execution without involving _(as mush as possible)_ any DOM object.
-sequential also records metadata, such as the time and the platform where the snippet was executed. 
-In a sentence: **sequential is not executing code to create a page, is creating a page to show code execution.**
-
 
 ## The architecture.
 
 sequential is a complete client side solution, meaning that everything is running on the browser.
 The back-end (server) is only responsible to serve static resources (HTML, CSS, JavaScript and images)
- 
-There are three main web pages: editor.html, engine.html and render.html
 
-
-Data flows from one page to another inside the URL. 
-
-For example: 
-/editor.html?{"code":"console.log('hello world');"}
-
-Data is encoded as JSON and using the native encodeURIComponent/decodeURIComponent functions giving the URL a cryptic look. 
-
-
-engine.html is the core of sequential.
-It's responsible of parsing the snippet of code and executing it before calling render.html
-
-It receives an input like
-```javascript
-{ 
-   "code" : String 
-}
-```
-
-On a successful execution, engine.html changes its address (location.replace) so to call 'render.html' with the result of the execution
-
-```javascript
-{
-   "platform":String                     // The description of the platform where the code is executed       
-   "timestamp":String                    // The browser's timestamp in ISO 8601 format                                   
-   "statements":String[]                 // the array of statements (including the comments) that was executed.
-   "logs": { number: [...], number: []}  // the logs at the given line.  
-   "error": number                       // (optional) the line number of where the error occurs.
-   "errorMessage": String                // (optional) the error message  
-   "timeout": number                     // (optional) the line number for the first statement 
-                                         //            which was not executed due to a time out.
-} 
-```
-
-
-
-Here is an example: 
-```javascript
-engine.html?{ 
-   "code": "var i=0; i++; console.log(i);console.log(i*100);" 
-}
-```
-
-```javascript
-render.html? 
-{
-  statements : ["var i=0;", "i++;","console.log(i);","console.log(i*100);"], 
-  logs : {
-      2 : "1",
-      3 : "100" 
-  },
-  error : undefined,
-  errorMessage : undefined,
-  timeout : undefined, 
-  timestamp : "2017-05-23T14:15:02.844Z"
-  platform : "Firefox 42.0 32-bit on Windows 10 64-bit"
-}
-``` 
-
-Rules: 
-- "statements" is a mandatory object. Each statement (in the statements array) must be non-null. the array can be empty.
-- "logs" is a mandatory object. its keys must be numbers between 0 and statements.length-1
-- error is optional. If present must be a number between 0 and statements.length-1
-- errorMessage is optional. It is present iff error is present. 
-- timeout is optional. If present must be a number between 0 and statements.length-1
-- if error is present timeout is not (and vice versa).
-- if error is present    error >= max(keys in logs)   _(in other words: there are no logs following an error  since the remaining statements are not executed)_
-- if timeout is present  timeout > max(keys in logs)  _(in other words: there are no logs following a timeout since the remaining statements are not executed)_
- 
-```javascript 
-On a non-successful execution (intended as inability to parse the code) 'render.html' is called with 
-render.html?
-{
-   syntaxError: String
-   code: String 
-   timestamp : String,
-   platform : String
-}
-```   
-
-Finally, if engine.html (in its search URL) is given an invalid JSON or a valid JSON for which no code can be retrieved
-it simply stops and writes an error message.
-
- 
-
-
-## Design Considerations:
-
-sequential does not _eval_ code in its entirety.
-Instead, it breaks the code in statements which are then executed one at a time sequentially. 
-
-Only the output returned by console.log is captured. 
-Intent: It reduces the size of the response. It makes the tool opinionated (but in a good way) imposing a strict (yet elegant) way to write sequential JavaScript.
-  
-Fail fast. If an error occurs sequential doesn't continue. 
-Intent: I am opinionated again: I assume that if an error happens there is no need to go any further.  
- 
-Sandboxing. Sandboxing JavaScript code execution is difficult. This is achieved by isolating the execution on its own page (engine.html) and by showing the result on a different page (render.html)
 
 ## Roadmap
 
@@ -150,8 +45,6 @@ It's a misty one but those are a few things I'd like to have:
 
 - Ability to easily embed on external site (e.g. IFrame , embed.ly, script )
 - Ability to compare/diff executions (i.e. to highlight differences between browsers)
-- Better and Simpler (more minimal) UI
-- Better encoding/decoding for URL
 
 ## Issues
 
