@@ -9,7 +9,7 @@
 		a:hover,
 		a:focus {color:#2a6496;text-decoration:underline}
 		#editor { position:fixed;top:0;left:0;right:0;bottom:0;margin:0;padding:0; }
-		body { background-color:#F9F9F9;}
+		body { font-family:sans-serif; background-color:#F9F9F9;}
 		@media screen and (min-width: 600px) { #editor { position:fixed;top:3px;left:3px;right:3px;bottom:3px;margin:0;padding:0;}
 	</style>
 </head>
@@ -20,7 +20,11 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js'></script>
 <script>window.LZString || document.write('<script src="third-party/lz-string/1.4.4/lz-string.min.js"><\/script>');</script>
 <pre id='editor'></pre>
-<a href='https://sequential.js.org/' target='_top' style='position:fixed;z-index:1000;bottom:4px;right:4px;font-weight:bold;font-size:11px;'>sequential.js</a>
+<div style='position:fixed;z-index:1000;bottom:4px;right:4px;font-weight:bold;font-size:11px;' >
+    <a target='_top' title='go to sequential.js.org' href='https://sequential.js.org/'>home</a> - 
+    <a target='_top' title='get an HTML snippet to embed this code' id='linkEmbed'>embed</a> - 
+	<a target='_top' title='run out of the iframe' onclick='this.href=location.href;'>expand</a>
+</div>
 <script>
 var editor = ace.edit('editor');
 editor.getSession().setUseWorker(false); // prevent worker to signal warning / errors as you type.
@@ -41,7 +45,6 @@ try {
 editor.clearSelection();
 editor.focus();
 
-
 (function() { 
 	var nativeConsoleLog = console.log;  
 	var loadedURLs={};
@@ -58,11 +61,12 @@ editor.focus();
 	};
 	
 	function commentify(oj) {
-		var str = stringifyObject(oj, {
-			inlineCharacterLimit : 30		
-		});
-		
-	
+		var str = oj+''; 
+		if (str.indexOf('\n') == -1) {      // stringify the object only if it is not a multiline string.
+			str = stringifyObject(oj, {
+				inlineCharacterLimit : 30		
+			});
+		}
 		var array = str.split('\n');
 		for (var i=0;i<array.length;i++) {
 			array[i] = '//> '+array[i];
@@ -93,6 +97,7 @@ editor.focus();
 			addTail('');
 			if (editor.getValue() == '') location.replace('live.html#');
 			else             	         location.replace('live.html#'+LZString.compressToEncodedURIComponent( editor.getValue() ));
+			
 			console.log = function(oj) { 
 				addTail(commentify(oj));
 			};
@@ -104,13 +109,128 @@ editor.focus();
 })();
 
 
-//Experimental code: if it is an IFrame 
-//and during rendering we have the horizontal scrollBar visible we resize it
+// Experimental Feature:
+// If during rendering we have the horizontal scrollBar visible we scale the font down. 
+//
 setTimeout(function() { 
 	if (editor.renderer.scrollBarH.isVisible) {
 		editor.setFontSize(10);  
 	}	
 },0); 
+
+
+//
+// Creates a kind of modal dialog showing the HTML to copy/paste to embed the code 
+// (in a newly built Ace editor)
+// 
+document.getElementById('linkEmbed').onclick = function() {
+	var blanket = document.createElement('div');
+	blanket.style.position = 'fixed';
+	blanket.style.top =   0;
+	blanket.style.bottom= 0;
+	blanket.style.left =  0;
+	blanket.style.right = 0;
+	blanket.style.backgroundColor ='#ddd';
+	blanket.style.opacity = '0.9'
+	blanket.style.zIndex = 1000000;
+	
+	var d =  document.createElement('div');
+	d.style.position = 'fixed';
+	d.style.border = '1px solid #333';
+	d.style.top =   '40px';
+	d.style.bottom= '70px';
+	d.style.left =  '50px';
+	d.style.right = '50px';
+	d.style.backgroundColor ='#fff';
+	d.style.zIndex = 1000001;
+	
+	var lnkClose =  document.createElement('a');
+	lnkClose.style.position = 'fixed';
+	lnkClose.style.bottom= '40px';
+	lnkClose.style.left =  '50px';
+	lnkClose.style.right = '50px';
+	lnkClose.style.zIndex = 1000001;
+	lnkClose.style.fontWeight = 'bold';
+	lnkClose.style.fontSize = '11px';
+	lnkClose.href = '#';
+	lnkClose.onclick = function() {
+		document.body.removeChild(blanket); 
+		document.body.removeChild(d);
+		document.body.removeChild(lnkClose);
+		ed.destroy(); 
+	};
+	lnkClose.innerHTML = 'Close dialog';
+	var ed = ace.edit(d);
+	ed.getSession().setUseWorker(false); 
+	ed.setShowFoldWidgets(false);        
+	ed.setTheme('ace/theme/dawn');
+	ed.getSession().setMode('ace/mode/html');
+	ed.$blockScrolling=Infinity;  
+	ed.renderer.setShowGutter(false); 		
+	ed.setShowPrintMargin(true); 
+	ed.setFontSize(12);
+	var str = '<!-'+ '- sequential.js can be installed on virtually any website -' +'->\n'+
+		      '<!-'+ '- Just Copy/Paste The HTML code below in your page -' +'->\n' +
+		      '<!-'+ '- Adjust style parameters as you deem necessary -' +'->\n\n' +
+	          '<iframe src="https://sequential.js.org/live.html'+location.hash+'"\n'+
+	          'style="border:1px solid #888;\n       margin:0;padding:0;\n       width:500px;height:300px;">\n</iframe>';
+	ed.setValue(str);
+	document.body.appendChild(blanket); 
+	document.body.appendChild(d);
+	document.body.appendChild(lnkClose);
+	return false;
+}
+
+//
+// Experimental Feature (not ready)
+// 
+/*
+function snap() {
+	var code = editor.getValue(); 
+	code = code.replace(/\r?\n/g, '\n'); // Making sure that any \r\n becomes \n
+	var array = code.split('\n');
+	var max = 0;
+	var a1 = []; 
+    for (var i=0;i<array.length;i++) {
+    	if (array[i].trim() === 0) {
+    	    a1.push(array[i]);
+    	} else if (array[i].indexOf('//(')===0) {
+            var tmp = parseInt(array[i].substring(3))
+            if (tmp > max) max = tmp;
+            a1.push(array[i]);
+        } else {
+    		break;
+    	}
+    }
+	var tag = '//('+(max+1)+') '
+	a1.push(tag+ ' // '+new Date().toISOString());
+	if (window.platform) {
+		a1.push(tag+ ' // '+platform.description);		
+	} else {
+		a1.push(tag+ ' // [???]');
+		load('https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.4/platform.min.js'); // <-- this might not necessarily be up. (maybe it should be loaded from sqntl domain)
+		var tryCount = 0; 
+		setTimeout(function updatePlatform() {
+			var code = editor.getValue();
+			if (window.platform) {
+				code = code.replace(tag+ ' // [???]',tag+ ' // '+platform.description);
+				editor.setValue(code);
+				return;
+			}
+			tryCount++; 
+			if (tryCount == 6) return; 
+			setTimeout(updatePlatform,500); 
+		},500); 
+	}
+	var a2 = [];
+	for (;i<array.length;i++) {
+		a1.push(tag+' '+array[i]);
+		a2.push(array[i]);
+	}
+	var code = a1.join('\n')+'\n'+a2.join('\n'); 
+	editor.setValue(code);
+}
+*/
 </script>
 </body>
 </html>

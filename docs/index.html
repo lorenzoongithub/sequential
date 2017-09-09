@@ -3,50 +3,85 @@
 <head>
 	<meta charset='utf-8'><meta http-equiv='x-ua-compatible' content='ie=edge'>
 	<link rel="stylesheet" type="text/css" href="third-party/normalize/7.0.0/normalize.min.css">
-	<link rel="stylesheet" type="text/css" href="sequential.css">
+	<style>
+		body { font-family:sans-serif; line-height:150%}
+		a {color:#428bca;text-decoration:none;cursor:pointer}
+		a:hover,
+		a:focus{color:#2a6496;text-decoration:underline} 
+	</style>
 	<link rel='shortcut icon' href='favicon.ico' />
+	<style>
+	iframe {
+	   border:1px solid #888;margin:0;padding:0;width:500px;height:300px;
+	}
+	.carouselLink {
+	   border-radius:8px;
+	   background-color:#eee;
+	   padding:1px 4px;
+	}
+	</style>
 	<title>sequential.js - home</title>
 </head>
 <body>
-<div style='background-color:#333;color:white;padding:20px;border-bottom:2px solid #000;'> 
+<div style='background-color:#333;color:white;padding:20px;'> 
 	<h1 style='color:#FA3;'>sequential.js</h1>
-	<div>JavaScript to try</div>
+	<div>The no-nonsense JavaScript code playground</div> 
 </div>
-<div style='margin:1%;'>
-	<h2>Examples</h2>
-	<h4>Vanilla JavaScript</h4>
+<div style='margin:10px auto;width:500px;'>
+	<div id='dwrp'>
+	<iframe src='live.html#MYewdgziA2CmB00QHMAUBGA1OglAbiA'></iframe>
+	</div>
+	<div style='text-align:right;font-size:11px;'>
+	Load an example
+	<a href='#' class='carouselLink' onclick='loadExample(1); return false;'>1</a>
+	<a href='#' class='carouselLink' onclick='loadExample(2); return false;'>2</a>
+	<a href='#' class='carouselLink' onclick='loadExample(3); return false;'>3</a>
+	<a href='#' class='carouselLink' onclick='loadExample(4); return false;'>4</a>
+	<a href='#' class='carouselLink' onclick='loadExample(5); return false;'>5</a>
+	<!-- 
+	<a href='#' title='load another example' style='font-size:11px;' onclick='loadAnotherExample(); return false;'>load another example &uarr;</a>
+	 -->
+	</div>
+</div>
+<script>
+var examples = [
+	'', // nothing at 0-index
+	'live.html#MYewdgziA2CmB00QHMAUBGA1OglAbiA', // 1 + 1
+	'live.html#PTAEAsBdIBwZwFwjpAhgYwNYHsBuBTAJwDMAbbAdwDp1sBbYARwFd8UBLbAOzmAFYAHAIAMwgCzB2cALRlsqSOy4BzaTGxLI0ugvDSARoWyZ8XAFC0e2UvirllACmFUAjAGpnAJgCUAbiA', // floating point
+	'live.html#GYVwdgxgLglg9mABMAFDAvAJgMwEpEDeAUIqYhAgM5wA2ApgHQ1wDmauA3EQL5GqdA',                         // Optional Arguments in Function (ES6)
+	'live.html#G4QwTgBAtglgJnANgUwgXggbQEwBoIDMAugNwBQ4YIAnulgIz4B0LsCK+ALKWQMYD2AOwDO-FE0T8A5gApKNAJQkgA', // Spread Operator (ES6)
+	'live.html#DYewhgJgFA5AFgFwQBwM4C4D0mCuA7ZAawHMA6AYxAFtMAjMWgU2AFpUEw8IxQ9GABAGx0GzUlQCWeUgCtUMAJQBuAFBTkOBAAIAvFpiU87LcUYIAso1Sowp3VqgLdAPi0AiABLNQWgOogAJ2AINyUYVRBNDW09ACFRYFIEAM5UADNAqih1TQAaLQBvLWQAqzMMLQBtGCsAJgAGAEYAVhgAXS0AXwUKEAhGVUNUEGBGUlBiKEiUTWUgA', // Babel.js
+]; 
+function loadExample(ix) {
+	dwrp.innerHTML = '';
+	var ifm = document.createElement('iframe'); 
+	ifm.src = examples[ix]; 
+	dwrp.appendChild(ifm);
+}
+</script>
+<div style='padding:10px;background-color:#eee;'>
+	<h4>Create Code</h4>
 	<ul>
-	<li><a href='live.html#MYewdgziA2CmB00QHMAUBGA1OglAbiA'>1 + 1</a></li>
-	<li><a href='live.html#PTAEAsBdIBwZwFwjpAhgYwNYHsBuBTAJwDMAbbAdwDp1sBbYARwFd8UBLbAOzmAFYAHAIAMwgCzB2cALRlsqSOy4BzaTGxLI0ugvDSARoWyZ8XAFC0e2UvirllACmFUAjAGpnAJgCUAbiA'>floating point</a></li>
-	<li><a href='live.html#GYVwdgxgLglg9mABMAFDAvAJgMwEpEDeAUIqYhAgM5wA2ApgHQ1wDmauA3EQL5GqdA'>Optional Arguments in Function (ES6)</a></li>
-	<li><a href='live.html#G4QwTgBAtglgJnANgUwgXggbQEwBoIDMAugNwBQ4YIAnulgIz4B0LsCK+ALKWQMYD2AOwDO-FE0T8A5gApKNAJQkgA'>Spread Operator (ES6)</a></li>
+	<li><a href='live.html'>Create a new snippet (blank document)</a></li>
+	<li><a href='live.html#PTBQIAgSQOwhDCBnGBLADugpgFwgTwHsBXCAW1QHMALPAd3hjx0PGAgEYBKCAG0PgATBH1QAjAE7wJ+ADRsIAJh6DCyQmVzVUMShDqoc1CIdkQFAZh7EkWCAGNCMJIV5YAdPz0tkWO0bsSHEdNNlB+IQAKAHJaHHQkAC4Qe0EYACskd3t+YkEAM15pDxDgeHT4AA9gXnEkGsJBeCRqd0zgABZ3DgB2dw6Gppb3Chg2pGiuAG5QR2dXDy9IgH13dGkcQ1QnSIBtDjNFRTMOw7MABguriAsTgF0zOABeAD4IGABSRQguaaA'>Create a new snippet (rich template)</a></li>
 	</ul>
 	
-	<h4>Trendy Repos</h4>
+	<!-- 
+	<h4>What Some Say</h4>
 	<ul>
-	<li><a href='live.html#DYewhgJgFA5AFgFwQBwM4C4D0mCuA7ZAawHMA6AYxAFtMAjMWgU2AFpUEw8IxQ9GABAGx0GzUlQCWeUgCtUMAJQBuAFBTkOBAAIAvFpiU87LcUYIAso1Sowp3VqgLdAPi0AiABLNQWgOogAJ2AINyUYVRBNDW09ACFRYFIEAM5UADNAqih1TQAaLQBvLWQAqzMMLQBtGCsAJgAGAEYAVhgAXS0AXwUKEAhGVUNUEGBGUlBiKEiUTWUgA'>Babel.js</a></li>
-	<li><a href='live.html#DYewhgJgFA5AFgFwQBwM4C4D0nkCcCmyYAxgNYB0AliJgFao4FFnkC2lAdufTAJQDcAKAKpkAAgC8YgApMSFPIXmwAHpLFQAZgFcOxBNQ5ReYgN5iCCbbg5iATGIDUYgKz8xAX17G+Q4iA5UEGB8clAAcygRZHJ-CHwBIA'>Prepack.io</a></li>
-	<li><a href='live.html#DYewhgJgFA5AFgFwQBwM4C4D0mDuAvAJwgDoBLAO01QTHIjFHIFNNkCmlSmCABARmIBWYgGYYASgDcAKADGIcqhDAmxUAHMobDgi4FiAMxAEAtmASwAbmAIACAB4BePpKN2o1uwCtHABkleADx8-l4A1GHitgDeDraODmFeAL4SUkA'>Prettier</a></li>
- 	</ul>
- 	
- 	<h4>Popular Libraries</h4>
-	<ul>
-	<li><a href='live.html#DYewhgJgFA5AFgFwQBwM4C4D0mDGEB2AVqgHQ6gCuEAZsGAE4CmZIAtpmIWAB6bACWAI1R8QEMKjglimACwkAjAHYSs0eMklW-fNNQwAlAG4AUDhD5UIYM1ABzKAH0SyBgn7uLUANoKANAAEAExBgQDMgbIAuoHUFPg4nvgBUPgGAQDeJgEBTAgU9MnJAKTBpgC+BsZAA'>Lodash</a></li>
-	<li><a href='live.html#DYewhgJgFA5AFgFwQBwM4C4D0mDGEB2AVqgHQ6gCuEAZsGAE4CmZIAtpmIWAB6bACWAI1SZWbRvgQlimAEwkAjAA5Fo8ZJKt++aahgBKANwAoHCHyoQwZqADmUAARjWEhFH0lqIeqzBuYALJBAQ4AIiAOAJrRkQA0DnDorKzoqKgOYAYORkA'>Moment.js</a></li>
-	<li><a href='live.html#DYewhgJgFA5AFgFwQBwM4C4D0mDGEB2AVqgHQ6gCuEAZsGAE4CmZIAtpmIWAB6bACWAI1SYAYmADWjepgDMJAIwkADJmqTpJVv3wliMAJQBuAFA4Q+VCGDNQAcyjqp9EjoTT8jBCUasw-YCgDYyA'>faker.js</a></li>
+	<li><i>It's like Chrome console, only I can save my snippets and share them</i> - <span style="font-size:11px">Adam A.</span></li>
+	<li><i></i>
 	</ul>
-	
-	<h4>A Few Tips</h4>
+	 -->
+	<h4>A Few Tips on how best to write snippets</h4>
 	<ul>
 	<li>Use <code>load( urlString )</code> to load any external JavaScript library</li>
 	<li>Use <code>console.log( any )</code> to display any valuable output from your code</li>
 	<li>Copy the <code>URL</code> if you want to share/embed it</li>
 	</ul>
-
 </div>
 
 <div style='margin:100px 0 10px 0;text-align:center;font-size:11px;'>sequential.js<br>MIT License - Copyright © 2017 - <a href="https://github.com/lorenzoongithub/">Lorenzo Puccetti</a></div>
 <a href="https://github.com/lorenzoongithub/sequential"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-
 </body>
 </html>
