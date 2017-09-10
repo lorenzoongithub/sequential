@@ -3,22 +3,15 @@
 <head>
 	<meta charset='utf-8'><meta http-equiv='x-ua-compatible' content='ie=edge'>
 	<link rel="stylesheet" type="text/css" href="third-party/normalize/7.0.0/normalize.min.css">
+	<link rel='shortcut icon' href='favicon.ico' />
 	<style>
 		body { font-family:sans-serif; line-height:150%}
 		a {color:#428bca;text-decoration:none;cursor:pointer}
 		a:hover,
-		a:focus{color:#2a6496;text-decoration:underline} 
-	</style>
-	<link rel='shortcut icon' href='favicon.ico' />
-	<style>
-	iframe {
-	   border:1px solid #888;margin:0;padding:0;width:500px;height:300px;
-	}
-	.carouselLink {
-	   border-radius:8px;
-	   background-color:#eee;
-	   padding:1px 4px;
-	}
+		a:focus{color:#2a6496;text-decoration:underline}
+		iframe {
+	   		border:1px solid #888;margin:0;padding:0;width:500px;height:300px;
+		}
 	</style>
 	<title>sequential.js - home</title>
 </head>
@@ -28,37 +21,8 @@
 	<div>The no-nonsense JavaScript code playground</div> 
 </div>
 <div style='margin:10px auto;width:500px;'>
-	<div id='dwrp'>
-	<iframe src='live.html#MYewdgziA2CmB00QHMAUBGA1OglAbiA'></iframe>
-	</div>
-	<div style='text-align:right;font-size:11px;'>
-	Load an example
-	<a href='#' class='carouselLink' onclick='loadExample(1); return false;'>1</a>
-	<a href='#' class='carouselLink' onclick='loadExample(2); return false;'>2</a>
-	<a href='#' class='carouselLink' onclick='loadExample(3); return false;'>3</a>
-	<a href='#' class='carouselLink' onclick='loadExample(4); return false;'>4</a>
-	<a href='#' class='carouselLink' onclick='loadExample(5); return false;'>5</a>
-	<!-- 
-	<a href='#' title='load another example' style='font-size:11px;' onclick='loadAnotherExample(); return false;'>load another example &uarr;</a>
-	 -->
-	</div>
+	<iframe src='live.html#G4QwTgBJC8ELIgC4AsB0YQDsAmB7AtgBQCUA3AFCiQAeEsCKqAZgDa65iECMADHwFRgy5AMa5MAZ1wsApqjYBzQgHI4ATwiYArvgBGMyAEsJEZQGpqZIA'></iframe>
 </div>
-<script>
-var examples = [
-	'', // nothing at 0-index
-	'live.html#MYewdgziA2CmB00QHMAUBGA1OglAbiA', // 1 + 1
-	'live.html#PTAEAsBdIBwZwFwjpAhgYwNYHsBuBTAJwDMAbbAdwDp1sBbYARwFd8UBLbAOzmAFYAHAIAMwgCzB2cALRlsqSOy4BzaTGxLI0ugvDSARoWyZ8XAFC0e2UvirllACmFUAjAGpnAJgCUAbiA', // floating point
-	'live.html#GYVwdgxgLglg9mABMAFDAvAJgMwEpEDeAUIqYhAgM5wA2ApgHQ1wDmauA3EQL5GqdA',                         // Optional Arguments in Function (ES6)
-	'live.html#G4QwTgBAtglgJnANgUwgXggbQEwBoIDMAugNwBQ4YIAnulgIz4B0LsCK+ALKWQMYD2AOwDO-FE0T8A5gApKNAJQkgA', // Spread Operator (ES6)
-	'live.html#DYewhgJgFA5AFgFwQBwM4C4D0mCuA7ZAawHMA6AYxAFtMAjMWgU2AFpUEw8IxQ9GABAGx0GzUlQCWeUgCtUMAJQBuAFBTkOBAAIAvFpiU87LcUYIAso1Sowp3VqgLdAPi0AiABLNQWgOogAJ2AINyUYVRBNDW09ACFRYFIEAM5UADNAqih1TQAaLQBvLWQAqzMMLQBtGCsAJgAGAEYAVhgAXS0AXwUKEAhGVUNUEGBGUlBiKEiUTWUgA', // Babel.js
-]; 
-function loadExample(ix) {
-	dwrp.innerHTML = '';
-	var ifm = document.createElement('iframe'); 
-	ifm.src = examples[ix]; 
-	dwrp.appendChild(ifm);
-}
-</script>
 <div style='padding:10px;background-color:#eee;'>
 	<h4>Create Code</h4>
 	<ul>
@@ -80,7 +44,6 @@ function loadExample(ix) {
 	<li>Copy the <code>URL</code> if you want to share/embed it</li>
 	</ul>
 </div>
-
 <div style='margin:100px 0 10px 0;text-align:center;font-size:11px;'>sequential.js<br>MIT License - Copyright © 2017 - <a href="https://github.com/lorenzoongithub/">Lorenzo Puccetti</a></div>
 <a href="https://github.com/lorenzoongithub/sequential"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 </body>
