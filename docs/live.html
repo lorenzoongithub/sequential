@@ -23,7 +23,7 @@
 <div style='position:fixed;z-index:1000;bottom:4px;right:4px;font-weight:bold;font-size:11px;' >
     <script>
     // show the home link unless the parent frame is on https://sequential.js.org
-    if ((function() { try { return window.top.location.href.indexOf('sequential.js.org')==-1; } catch(e) { return 1; } })()) {
+    if ((function() { try { return window.top == top || window.top.location.href.indexOf('sequential.js.org')==-1; } catch(e) { return 1; } })()) {
     	document.write("<a target='_parent' title='go to sequential.js.org' href='https://sequential.js.org/'><img width=24;height=24; src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAABaSURBVEhLY/wPBAw0BExQmmZg1AKCgLG+vv5/Q0MDA8P6UxCRQDMwBRZDomEALq7vBabR1XM2TgPT5f9fgenROCAIRi0gCEYtIAhGLSAIRms0gmDUAgKAgQEAlPQZItPVu6QAAAAASUVORK5CYII='/></a>"); 
     }
     // show the expand icon unless already not in a IFrame 
