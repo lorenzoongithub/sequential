@@ -26,11 +26,31 @@
 </div>
 </div>
 <div style='padding:10px;background-color:#fff;color:#000'>
-	<h4>Create Code</h4>
+	<h2>Get started</h2>
 	<ul>
 	<li><a href='live.html'>Create a new snippet (blank document)</a></li>
 	<li><a href='live.html#PTBQIAgSQOwhDCBnGBLADugpgFwgTwHsBXCAW1QHMALPAd3hjx0PGAgEYBKCAG0PgATBH1QAjAE7wJ+ADRsIAJh6DCyQmVzVUMShDqoc1CIdkQFAZh7EkWCAGNCMJIV5YAdPz0tkWO0bsSHEdNNlB+IQAKAHJaHHQkAC4Qe0EYACskd3t+YkEAM15pDxDgeHT4AA9gXnEkGsJBeCRqd0zgABZ3DgB2dw6Gppb3Chg2pGiuAG5QR2dXDy9IgH13dGkcQ1QnSIBtDjNFRTMOw7MABguriAsTgF0zOABeAD4IGABSRQguaaA'>Create a new snippet (rich template)</a></li>
 	</ul>
+<!-- 
+</div>
+<div style='padding:10px;background-color:#ddd;color:#000'>
+ -->	
+	<h2>Tips</h2>
+	<ul>
+	<li>Use <code>load( urlString )</code> to load any external JavaScript library</li>
+	<li>Loading is an asynchronous operation: it might take a couple of executions for the code to give you the expected results</li>
+	<li>Use <code>console.log( ... )</code> to display any valuable output from your code. Watch Out: you can only use it once</li>
+	<li>Watch out when typing for-loops not to create an infinite one</li> 
+	<li>It's possible to write a snippet which appears to work but it's broken as it relies on a variable which you defined and then removed</li>
+	<li>Code running on sequential.js is not fully sandboxed. It's unlikely but you could trip on the variables used by the page</li> 
+	</ul>
+</div>
+<!-- 
+<div style='padding:10px;background-color:#B0FFFF;color:#000'>	
+	<h2>Leverage the best CDN for JavaScript</h2>
+	<img src='cdn.png' />
+</div>
+ -->
 	<!-- 
 	<h4>What Some Say</h4>
 	<ul>
@@ -38,23 +58,6 @@
 	<li><i></i>
 	</ul>
 	 -->
-	<h4>Few Tips on how to write code on sequential.js</h4>
-	<ul>
-	<li>Use <code>load( urlString )</code> to load any external JavaScript library</li>
-	<li>Use <code>console.log( ... )</code> to display any valuable output from your code</li>
-	<li>Copy the <code>URL</code> as is, to share it or for an <code>IFrame</code> on your site</li>
-	</ul>
-	
-	<h4>Current Gotchas/Issues</h4>
-	<ul>
-	<li>You can only use <code>console.log</code> once</li>
-	<li>Typing a for-loop might end up with executing an infinite one if you are not fast enough.<code>for (var i=0;i<100; )</code></li> 
-	<li>It's possible to write a snippet which appears to work but it's broken as it relies on a variable which you defined and then removed.</li>
-	<li>Your JavaScript is not fully sandboxed. Watch out not to trip on the variables used by the page</li> 
-	</ul>
-
-	
-</div>
 <div style='margin:100px 0 10px 0;text-align:center;font-size:11px;'>sequential.js<br>MIT License - Copyright © 2017 - <a href="https://github.com/lorenzoongithub/">Lorenzo Puccetti</a></div>
 <a href="https://github.com/lorenzoongithub/sequential"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 </body>
